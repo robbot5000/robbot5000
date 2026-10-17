@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-black">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PORTFOLIO // MID-2000s TECH INTERFACE</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Dot Grid Background */
+    .bg-dot-grid {
+      background-color: #000000;
+      background-image: radial-gradient(rgba(255, 255, 255, 0.25) 1px, transparent 1px);
+      background-size: 16px 16px;
+    }
+
+    /* Custom Tech Typography & Borders */
+    body {
+      font-family: 'Consolas', 'Courier New', monospace;
+    }
+
+    /* Double Border Effect matching Reference */
+    .double-border {
+      border: 1px solid #ffffff;
+      outline: 1px solid #ffffff;
+      outline-offset: -4px;
+    }
+
+    .single-border {
+      border: 1px solid #ffffff;
+    }
+
+    /* Custom Scrollbar for Retro Feel */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #000;
+      border: 1px solid #333;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #fff;
+    }
+
+    /* Subtle Card Hover Zoom & Glow */
+    .tech-card {
+      transition: transform 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+    .tech-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body class="bg-dot-grid text-white min-h-screen flex flex-col justify-between p-4 md:p-8 select-none">
+
+  <!-- TOP HEADER / MAIN HERO WINDOW -->
+  <header class="max-w-7xl mx-auto w-full mb-6">
+    <!-- Top Attached Navigation Tabs -->
+    <div class="flex justify-end gap-1 mb-[-1px] relative z-10">
+      <button onclick="switchTab('DESIGN')" class="nav-tab active-tab bg-black text-white text-xs md:text-sm font-bold uppercase px-4 py-1.5 border border-white hover:bg-white hover:text-black transition-colors">
+        DESIGN
+      </button>
+      <button onclick="switchTab('ART / EXPERIMENTS')" class="nav-tab bg-black text-white text-xs md:text-sm font-bold uppercase px-4 py-1.5 border border-white hover:bg-white hover:text-black transition-colors">
+        ART / EXPERIMENTS
+      </button>
+      <button onclick="switchTab('BIO')" class="nav-tab bg-black text-white text-xs md:text-sm font-bold uppercase px-4 py-1.5 border border-white hover:bg-white hover:text-black transition-colors">
+        BIO
+      </button>
+      <button onclick="switchTab('CONTACT')" class="nav-tab bg-black text-white text-xs md:text-sm font-bold uppercase px-4 py-1.5 border border-white hover:bg-white hover:text-black transition-colors">
+        CONTACT
+      </button>
+    </div>
+
+    <!-- Main Hero Display Frame -->
+    <div class="double-border bg-black p-2 md:p-3 relative overflow-hidden">
+      <!-- Image Viewport -->
+      <div class="relative w-full h-[280px] sm:h-[360px] md:h-[420px] bg-neutral-900 overflow-hidden group cursor-pointer" onclick="openHeroModal()">
+        <!-- Background Hero Image -->
+        <img id="hero-img" src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=1600&q=80" alt="Main Display" class="w-full h-full object-cover filter brightness-75 contrast-125 group-hover:scale-105 transition-transform duration-500">
+        
+        <!-- Logo / Icon Block Overlay Top-Left -->
+        <div class="absolute top-4 left-4 border border-white bg-black p-2 w-12 h-12 flex items-center justify-center z-10 shadow-lg">
+          <svg class="w-8 h-8 text-cyan-400 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+          </svg>
+        </div>
+
+        <!-- Big Bold Title Overlay Bottom-Left -->
+        <div class="absolute bottom-6 left-6 md:left-10 z-10">
+          <h1 id="hero-title" class="text-4xl sm:text-6xl md:text-8xl font-black tracking-tighter uppercase text-white drop-shadow-[0_4px_10px_rgba(0,0,0,0.9)]">
+            DESIGN
+          </h1>
+        </div>
+
+        <!-- Scanning overlay effect -->
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-white/5 to-transparent pointer-events-none"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- LOWER GRID ROW (Folder / Category Cards) -->
+  <main class="max-w-7xl mx-auto w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
+
+    <!-- Card 1: Industrial Design -->
+    <div class="tech-card cursor-pointer" onclick="openModal('INDUSTRIAL DESIGN', 'https://images.unsplash.com/photo-1581235720704-06d3acfcb36f?auto=format&fit=crop&w=800&q=80', 'Structural product concepts, parametric furniture, and physical prototype engineering.')">
+      <!-- Folder Tab Header (Right Aligned) -->
+      <div class="flex justify-end mb-[-1px]">
+        <div class="bg-black border border-white px-3 py-1 text-xs font-bold uppercase tracking-wider text-center max-w-[85%] truncate">
+          INDUSTRIAL DESIGN
+        </div>
+      </div>
+      <!-- Folder Content Frame -->
+      <div class="double-border bg-black p-2">
+        <div class="w-full h-64 bg-neutral-900 overflow-hidden relative border border-neutral-800">
+          <img src="https://images.unsplash.com/photo-1581235720704-06d3acfcb36f?auto=format&fit=crop&w=800&q=80" alt="Industrial Design" class="w-full h-full object-cover filter grayscale contrast-125 hover:grayscale-0 transition-all duration-300">
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2: Lighting / Visuals -->
+    <div class="tech-card cursor-pointer" onclick="openModal('LIGHTING / VISUALS', 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80', 'Architectural lighting installations, live event visual programming, and spatial light mapping.')">
+      <!-- Folder Tab Header (Right Aligned) -->
+      <div class="flex justify-end mb-[-1px]">
+        <div class="bg-black border border-white px-3 py-1 text-xs font-bold uppercase tracking-wider text-center max-w-[85%] truncate">
+          LIGHTING / VISUALS
+        </div>
+      </div>
+      <!-- Folder Content Frame -->
+      <div class="double-border bg-black p-2">
+        <div class="w-full h-64 bg-neutral-900 overflow-hidden relative border border-neutral-800">
+          <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80" alt="Lighting / Visuals" class="w-full h-full object-cover contrast-125 hover:scale-105 transition-all duration-300">
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3: Graphics / Renders -->
+    <div class="tech-card cursor-pointer" onclick="openModal('GRAPHICS / RENDERS', 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80', 'High-fidelity 3D renderings, procedural visual assets, and brand system graphics.')">
+      <!-- Folder Tab Header (Right Aligned) -->
+      <div class="flex justify-end mb-[-1px]">
+        <div class="bg-black border border-white px-3 py-1 text-xs font-bold uppercase tracking-wider text-center max-w-[85%] truncate">
+          GRAPHICS / RENDERS
+        </div>
+      </div>
+      <!-- Folder Content Frame -->
+      <div class="double-border bg-black p-2">
+        <div class="w-full h-64 bg-neutral-950 flex items-center justify-center relative border border-neutral-800 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80" alt="Graphics / Renders" class="w-full h-full object-cover filter contrast-125 hover:scale-105 transition-all duration-300">
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 4: Interactive -->
+    <div class="tech-card cursor-pointer" onclick="openModal('INTERACTIVE', 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80', 'Custom WebGL applications, physical computing, and real-time sensory interface systems.')">
+      <!-- Folder Tab Header (Right Aligned) -->
+      <div class="flex justify-end mb-[-1px]">
+        <div class="bg-black border border-white px-3 py-1 text-xs font-bold uppercase tracking-wider text-center max-w-[85%] truncate">
+          INTERACTIVE
+        </div>
+      </div>
+      <!-- Folder Content Frame -->
+      <div class="double-border bg-black p-2">
+        <div class="w-full h-64 bg-neutral-900 overflow-hidden relative border border-neutral-800">
+          <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80" alt="Interactive" class="w-full h-full object-cover contrast-125 hover:scale-105 transition-all duration-300">
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER & CENTER ACCENT INDICATOR -->
+  <footer class="flex flex-col items-center justify-center gap-3 py-4">
+    <!-- Blue Diamond Indicator matching reference -->
+    <div class="w-2.5 h-2.5 bg-blue-600 transform rotate-45 border border-blue-400 shadow-[0_0_8px_rgba(37,99,235,0.8)]"></div>
+    <p class="text-[10px] tracking-widest text-neutral-500 uppercase">SYS.PORTFOLIO_V2.0 // ALL RIGHTS RESERVED</p>
+  </footer>
+
+  <!-- DETAIL MODAL WINDOW -->
+  <div id="modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="double-border bg-black w-full max-w-3xl p-3 relative shadow-2xl">
+      <!-- Modal Header Bar -->
+      <div class="flex justify-between items-center border-b border-white pb-2 mb-3">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 bg-blue-500 rounded-full inline-block"></span>
+          <h2 id="modal-title" class="font-bold text-sm md:text-base uppercase tracking-wider text-white">CATEGORY_TITLE</h2>
+        </div>
+        <button onclick="closeModal()" class="border border-white px-2 py-0.5 text-xs font-bold hover:bg-white hover:text-black transition-colors">
+          [X] CLOSE
+        </button>
+      </div>
+
+      <!-- Modal Content Area -->
+      <div class="space-y-4">
+        <div class="w-full h-64 md:h-80 bg-neutral-900 border border-neutral-800 overflow-hidden">
+          <img id="modal-img" src="" alt="Detail View" class="w-full h-full object-cover">
+        </div>
+        <p id="modal-desc" class="text-xs md:text-sm text-neutral-300 leading-relaxed font-mono">
+          Detailed project metadata and description will be loaded here.
+        </p>
+        <div class="flex justify-between items-center text-[10px] text-neutral-500 border-t border-neutral-800 pt-2">
+          <span>STATUS: ONLINE</span>
+          <span>FORMAT: IMAGE/JPEG</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INTERACTION SCRIPT -->
+  <script>
+    // Tab switching simulation
+    function switchTab(category) {
+      const heroTitle = document.getElementById('hero-title');
+      const heroImg = document.getElementById('hero-img');
+      
+      heroTitle.textContent = category;
+
+      // Update Hero Image depending on selected main tab
+      const images = {
+        'DESIGN': 'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=1600&q=80',
+        'ART / EXPERIMENTS': 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=80',
+        'BIO': 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1600&q=80',
+        'CONTACT': 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1600&q=80'
+      };
+
+      if (images[category]) {
+        heroImg.src = images[category];
+      }
+
+      // Tab styling toggles
+      document.querySelectorAll('.nav-tab').forEach(tab => {
+        if (tab.textContent.trim() === category) {
+          tab.classList.add('bg-white', 'text-black');
+          tab.classList.remove('bg-black', 'text-white');
+        } else {
+          tab.classList.remove('bg-white', 'text-black');
+          tab.classList.add('bg-black', 'text-white');
+        }
+      });
+    }
+
+    // Modal view handlers
+    function openModal(title, imgSrc, desc) {
+      document.getElementById('modal-title').textContent = title;
+      document.getElementById('modal-img').src = imgSrc;
+      document.getElementById('modal-desc').textContent = desc;
+      document.getElementById('modal').classList.remove('hidden');
+    }
+
+    function openHeroModal() {
+      const title = document.getElementById('hero-title').textContent;
+      const imgSrc = document.getElementById('hero-img').src;
+      openModal(title + ' // MAIN HERO VIEW', imgSrc, 'Primary featured exhibit highlighting overall work in ' + title + '.');
+    }
+
+    function closeModal() {
+      document.getElementById('modal').classList.add('hidden');
+    }
+
+    // Close modal on escape key
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+  </script>
+</body>
+</html>
