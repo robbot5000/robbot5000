@@ -18,7 +18,7 @@
       font-family: 'Consolas', 'Courier New', monospace;
     }
 
-    /* Double Border Effect matching Reference */
+    /* Double Border Effect */
     .double-border {
       border: 1px solid #ffffff;
       outline: 1px solid #ffffff;
@@ -29,7 +29,7 @@
       border: 1px solid #ffffff;
     }
 
-    /* Custom Scrollbar for Retro Feel */
+    /* Custom Scrollbar */
     ::-webkit-scrollbar {
       width: 6px;
       height: 6px;
@@ -59,7 +59,7 @@
   <header class="max-w-7xl mx-auto w-full mb-6">
     <!-- Top Attached Navigation Tabs -->
     <div class="flex justify-end gap-1 mb-[-1px] relative z-10">
-      <button onclick="switchTab('DESIGN')" class="nav-tab active-tab bg-black text-white text-xs md:text-sm font-bold uppercase px-4 py-1.5 border border-white hover:bg-white hover:text-black transition-colors">
+      <button onclick="switchTab('DESIGN')" class="nav-tab active-tab bg-white text-black text-xs md:text-sm font-bold uppercase px-4 py-1.5 border border-white hover:bg-white hover:text-black transition-colors">
         DESIGN
       </button>
       <button onclick="switchTab('ART / EXPERIMENTS')" class="nav-tab bg-black text-white text-xs md:text-sm font-bold uppercase px-4 py-1.5 border border-white hover:bg-white hover:text-black transition-colors">
@@ -77,8 +77,8 @@
     <div class="double-border bg-black p-2 md:p-3 relative overflow-hidden">
       <!-- Image Viewport -->
       <div class="relative w-full h-[280px] sm:h-[360px] md:h-[420px] bg-neutral-900 overflow-hidden group cursor-pointer" onclick="openHeroModal()">
-        <!-- Background Hero Image -->
-        <img id="hero-img" src="assets\interactive\intel encore\INTELAIEXHIBIT_W-V1_webp.webp" alt="Main Display" class="w-full h-full object-cover filter brightness-75 contrast-125 group-hover:scale-105 transition-transform duration-500">
+        <!-- Background Hero Image mapped to config -->
+        <img id="hero-img" data-media="heroDesign" src="" alt="Main Display" class="w-full h-full object-cover filter brightness-75 contrast-125 group-hover:scale-105 transition-transform duration-500">
         
         <!-- Logo / Icon Block Overlay Top-Left -->
         <div class="absolute top-4 left-4 border border-white bg-black p-2 w-12 h-12 flex items-center justify-center z-10 shadow-lg">
@@ -104,65 +104,57 @@
   <main class="max-w-7xl mx-auto w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
 
     <!-- Card 1: Industrial Design -->
-    <div class="tech-card cursor-pointer" onclick="openModal('INDUSTRIAL DESIGN', 'assets\industrial design\lucite dreams\All 3.356_webp.webp', 'Structural product concepts, parametric furniture, and physical prototype engineering.')">
-      <!-- Folder Tab Header (Right Aligned) -->
+    <div class="tech-card cursor-pointer" onclick="openModalFromCard(this, 'INDUSTRIAL DESIGN', 'Structural product concepts, parametric furniture, and physical prototype engineering.')">
       <div class="flex justify-end mb-[-1px]">
         <div class="bg-black border border-white px-3 py-1 text-xs font-bold uppercase tracking-wider text-center max-w-[85%] truncate">
           INDUSTRIAL DESIGN
         </div>
       </div>
-      <!-- Folder Content Frame -->
       <div class="double-border bg-black p-2">
         <div class="w-full h-64 bg-neutral-900 overflow-hidden relative border border-neutral-800">
-          <img src="https://images.unsplash.com/photo-1581235720704-06d3acfcb36f?auto=format&fit=crop&w=800&q=80" alt="Industrial Design" class="w-full h-full object-cover filter grayscale contrast-125 hover:grayscale-0 transition-all duration-300">
+          <img data-media="cardIndustrialDesign" src="" alt="Industrial Design" class="card-img w-full h-full object-cover filter grayscale contrast-125 hover:grayscale-0 transition-all duration-300">
         </div>
       </div>
     </div>
 
     <!-- Card 2: Lighting / Visuals -->
-    <div class="tech-card cursor-pointer" onclick="openModal('LIGHTING / VISUALS', 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80', 'Architectural lighting installations, live event visual programming, and spatial light mapping.')">
-      <!-- Folder Tab Header (Right Aligned) -->
+    <div class="tech-card cursor-pointer" onclick="openModalFromCard(this, 'LIGHTING / VISUALS', 'Architectural lighting installations, live event visual programming, and spatial light mapping.')">
       <div class="flex justify-end mb-[-1px]">
         <div class="bg-black border border-white px-3 py-1 text-xs font-bold uppercase tracking-wider text-center max-w-[85%] truncate">
           LIGHTING / VISUALS
         </div>
       </div>
-      <!-- Folder Content Frame -->
       <div class="double-border bg-black p-2">
         <div class="w-full h-64 bg-neutral-900 overflow-hidden relative border border-neutral-800">
-          <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=800&q=80" alt="Lighting / Visuals" class="w-full h-full object-cover contrast-125 hover:scale-105 transition-all duration-300">
+          <img data-media="cardLightingVisuals" src="" alt="Lighting / Visuals" class="card-img w-full h-full object-cover contrast-125 hover:scale-105 transition-all duration-300">
         </div>
       </div>
     </div>
 
     <!-- Card 3: Graphics / Renders -->
-    <div class="tech-card cursor-pointer" onclick="openModal('GRAPHICS / RENDERS', 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80', 'High-fidelity 3D renderings, procedural visual assets, and brand system graphics.')">
-      <!-- Folder Tab Header (Right Aligned) -->
+    <div class="tech-card cursor-pointer" onclick="openModalFromCard(this, 'GRAPHICS / RENDERS', 'High-fidelity 3D renderings, procedural visual assets, and brand system graphics.')">
       <div class="flex justify-end mb-[-1px]">
         <div class="bg-black border border-white px-3 py-1 text-xs font-bold uppercase tracking-wider text-center max-w-[85%] truncate">
           GRAPHICS / RENDERS
         </div>
       </div>
-      <!-- Folder Content Frame -->
       <div class="double-border bg-black p-2">
         <div class="w-full h-64 bg-neutral-950 flex items-center justify-center relative border border-neutral-800 overflow-hidden">
-          <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80" alt="Graphics / Renders" class="w-full h-full object-cover filter contrast-125 hover:scale-105 transition-all duration-300">
+          <img data-media="cardGraphicsRenders" src="" alt="Graphics / Renders" class="card-img w-full h-full object-cover filter contrast-125 hover:scale-105 transition-all duration-300">
         </div>
       </div>
     </div>
 
     <!-- Card 4: Interactive -->
-    <div class="tech-card cursor-pointer" onclick="openModal('INTERACTIVE', 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80', 'Custom WebGL applications, physical computing, and real-time sensory interface systems.')">
-      <!-- Folder Tab Header (Right Aligned) -->
+    <div class="tech-card cursor-pointer" onclick="openModalFromCard(this, 'INTERACTIVE', 'Custom WebGL applications, physical computing, and real-time sensory interface systems.')">
       <div class="flex justify-end mb-[-1px]">
         <div class="bg-black border border-white px-3 py-1 text-xs font-bold uppercase tracking-wider text-center max-w-[85%] truncate">
           INTERACTIVE
         </div>
       </div>
-      <!-- Folder Content Frame -->
       <div class="double-border bg-black p-2">
         <div class="w-full h-64 bg-neutral-900 overflow-hidden relative border border-neutral-800">
-          <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80" alt="Interactive" class="w-full h-full object-cover contrast-125 hover:scale-105 transition-all duration-300">
+          <img data-media="cardInteractive" src="" alt="Interactive" class="card-img w-full h-full object-cover contrast-125 hover:scale-105 transition-all duration-300">
         </div>
       </div>
     </div>
@@ -171,7 +163,6 @@
 
   <!-- FOOTER & CENTER ACCENT INDICATOR -->
   <footer class="flex flex-col items-center justify-center gap-3 py-4">
-    <!-- Blue Diamond Indicator matching reference -->
     <div class="w-2.5 h-2.5 bg-blue-600 transform rotate-45 border border-blue-400 shadow-[0_0_8px_rgba(37,99,235,0.8)]"></div>
     <p class="text-[10px] tracking-widest text-neutral-500 uppercase">SYS.PORTFOLIO_V2.0 // ALL RIGHTS RESERVED</p>
   </footer>
@@ -200,34 +191,65 @@
         </p>
         <div class="flex justify-between items-center text-[10px] text-neutral-500 border-t border-neutral-800 pt-2">
           <span>STATUS: ONLINE</span>
-          <span>FORMAT: IMAGE/JPEG</span>
+          <span>FORMAT: IMAGE/WEBP</span>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- INTERACTION SCRIPT -->
+  <!-- 1. LOAD CONFIG FILE -->
+  <script src="config.js"></script>
+
+  <!-- 2. INTERACTION & MEDIA BINDING SCRIPT -->
   <script>
-    // Tab switching simulation
+    // Initialize & bind config.js media on DOM load
+    document.addEventListener("DOMContentLoaded", () => {
+      if (typeof SITE_MEDIA !== "undefined") {
+        applyConfigMedia();
+      } else {
+        console.warn("config.js not detected. Ensure config.js exists in root directory.");
+      }
+    });
+
+    function applyConfigMedia() {
+      document.querySelectorAll("[data-media]").forEach((el) => {
+        const key = el.getAttribute("data-media");
+        const path = SITE_MEDIA[key];
+
+        if (path && path.trim() !== "") {
+          if (el.tagName === "IMG") {
+            el.src = path;
+          } else if (el.tagName === "SOURCE") {
+            el.src = path;
+            el.parentElement.load();
+          } else {
+            el.style.backgroundImage = `url('${path}')`;
+          }
+        }
+      });
+    }
+
+    // Dynamic Tab Switcher using config.js keys
     function switchTab(category) {
       const heroTitle = document.getElementById('hero-title');
       const heroImg = document.getElementById('hero-img');
       
       heroTitle.textContent = category;
 
-      // Update Hero Image depending on selected main tab
-      const images = {
-        'DESIGN': 'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=1600&q=80',
-        'ART / EXPERIMENTS': 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=80',
-        'BIO': 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1600&q=80',
-        'CONTACT': 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1600&q=80'
+      // Select matching config key per tab
+      const tabKeyMap = {
+        'DESIGN': 'heroDesign',
+        'ART / EXPERIMENTS': 'heroArtExperiments',
+        'BIO': 'heroBio',
+        'CONTACT': 'heroContact'
       };
 
-      if (images[category]) {
-        heroImg.src = images[category];
+      const mediaKey = tabKeyMap[category];
+      if (typeof SITE_MEDIA !== "undefined" && SITE_MEDIA[mediaKey]) {
+        heroImg.src = SITE_MEDIA[mediaKey];
       }
 
-      // Tab styling toggles
+      // Tab UI styling toggle
       document.querySelectorAll('.nav-tab').forEach(tab => {
         if (tab.textContent.trim() === category) {
           tab.classList.add('bg-white', 'text-black');
@@ -247,6 +269,12 @@
       document.getElementById('modal').classList.remove('hidden');
     }
 
+    function openModalFromCard(cardEl, title, desc) {
+      const img = cardEl.querySelector('.card-img');
+      const imgSrc = img ? img.src : '';
+      openModal(title, imgSrc, desc);
+    }
+
     function openHeroModal() {
       const title = document.getElementById('hero-title').textContent;
       const imgSrc = document.getElementById('hero-img').src;
@@ -257,7 +285,7 @@
       document.getElementById('modal').classList.add('hidden');
     }
 
-    // Close modal on escape key
+    // Close modal on Escape
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') closeModal();
     });
