@@ -202,12 +202,9 @@
 
   <!-- 2. INTERACTION & MEDIA BINDING SCRIPT -->
   <script>
-    // Initialize & bind config.js media on DOM load
     document.addEventListener("DOMContentLoaded", () => {
       if (typeof SITE_MEDIA !== "undefined") {
         applyConfigMedia();
-      } else {
-        console.warn("config.js not detected. Ensure config.js exists in root directory.");
       }
     });
 
@@ -229,14 +226,12 @@
       });
     }
 
-    // Dynamic Tab Switcher using config.js keys
     function switchTab(category) {
       const heroTitle = document.getElementById('hero-title');
       const heroImg = document.getElementById('hero-img');
       
       heroTitle.textContent = category;
 
-      // Select matching config key per tab
       const tabKeyMap = {
         'DESIGN': 'heroDesign',
         'ART / EXPERIMENTS': 'heroArtExperiments',
@@ -249,7 +244,6 @@
         heroImg.src = SITE_MEDIA[mediaKey];
       }
 
-      // Tab UI styling toggle
       document.querySelectorAll('.nav-tab').forEach(tab => {
         if (tab.textContent.trim() === category) {
           tab.classList.add('bg-white', 'text-black');
@@ -261,7 +255,6 @@
       });
     }
 
-    // Modal view handlers
     function openModal(title, imgSrc, desc) {
       document.getElementById('modal-title').textContent = title;
       document.getElementById('modal-img').src = imgSrc;
@@ -285,7 +278,6 @@
       document.getElementById('modal').classList.add('hidden');
     }
 
-    // Close modal on Escape
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') closeModal();
     });
