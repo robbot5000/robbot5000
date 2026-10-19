@@ -44,7 +44,7 @@ const CATEGORY_DATA = {
   },
   "graphics-renders": {
     title: "GRAPHICS / RENDERS",
-    heroImage: "assets/graphics-renders/posters/Felicia-UNITY_Poster-Portrait-rev2.jpg",
+    heroImage: "assets/graphics-renders/posters/NINE-0-NINE_March-Poster_PRE_webp.webp",
     projects: [
       {
         title: "NINE-0-NINE Poster",
