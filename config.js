@@ -47,9 +47,9 @@ const CATEGORY_DATA = {
     heroImage: "assets/graphics-renders/posters/Felicia-UNITY_Poster-Portrait-rev2.jpg",
     projects: [
       {
-        title: "FELICIA UNITY POSTER",
-        image: "assets/graphics-renders/posters/Felicia-UNITY_Poster-Portrait-rev2.jpg",
-        description: "Procedural graphic system design and high-fidelity rendering."
+        title: "NINE-0-NINE Poster",
+        image: "assets/graphics-renders/posters/NINE-0-NINE_March-Poster_PRE_webp.webp",
+        description: "Poster for a local techno show at Bar Cathedral. Was my first time VJing and creating an event poster"
       }
     ]
   },
