@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-black">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CATEGORY // PORTFOLIO</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .bg-dot-grid {
+      background-color: #000000;
+      background-image: radial-gradient(rgba(255, 255, 255, 0.25) 1px, transparent 1px);
+      background-size: 16px 16px;
+    }
+    body { font-family: 'Consolas', 'Courier New', monospace; }
+    .double-border {
+      border: 1px solid #ffffff;
+      outline: 1px solid #ffffff;
+      outline-offset: -4px;
+    }
+    .tech-card {
+      transition: transform 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+    .tech-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
+    }
+  </style>
+</head>
+<body class="bg-dot-grid text-white min-h-screen flex flex-col justify-between p-4 md:p-8 select-none">
+
+  <!-- HEADER -->
+  <header class="max-w-7xl mx-auto w-full mb-6">
+    <div class="flex justify-between items-center mb-2">
+      <a href="index.html" class="bg-black text-white text-xs md:text-sm font-bold uppercase px-4 py-1.5 border border-white hover:bg-white hover:text-black transition-colors">
+        &lt;= BACK TO MAIN
+      </a>
+      <div id="category-badge" class="bg-black text-white text-xs md:text-sm font-bold uppercase px-4 py-1.5 border border-white">
+        CATEGORY
+      </div>
+    </div>
+
+    <!-- Category Hero Frame -->
+    <div class="double-border bg-black p-2 md:p-3 relative overflow-hidden">
+      <div class="relative w-full h-[280px] sm:h-[360px] bg-neutral-900 overflow-hidden">
+        <img id="category-hero-img" src="" alt="Category Hero" class="w-full h-full object-cover filter brightness-75 contrast-125">
+        <div class="absolute bottom-6 left-6 md:left-10 z-10">
+          <h1 id="category-title" class="text-3xl sm:text-5xl md:text-7xl font-black tracking-tighter uppercase text-white drop-shadow-[0_4px_10px_rgba(0,0,0,0.9)]">
+            CATEGORY
+          </h1>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- PROJECTS GRID -->
+  <main id="projects-grid" class="max-w-7xl mx-auto w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-8">
+    <!-- Dynamic project cards populate here -->
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="flex flex-col items-center justify-center gap-3 py-4">
+    <div class="w-2.5 h-2.5 bg-blue-600 transform rotate-45 border border-blue-400 shadow-[0_0_8px_rgba(37,99,235,0.8)]"></div>
+    <p class="text-[10px] tracking-widest text-neutral-500 uppercase">SYS.PORTFOLIO_V2.0 // ALL RIGHTS RESERVED</p>
+  </footer>
+
+  <!-- DETAIL MODAL WINDOW -->
+  <div id="modal" onclick="handleBackdropClick(event)" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="double-border bg-black w-full max-w-3xl p-3 relative shadow-2xl">
+      <div class="flex justify-between items-center border-b border-white pb-2 mb-3">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 bg-blue-500 rounded-full inline-block"></span>
+          <h2 id="modal-title" class="font-bold text-sm md:text-base uppercase tracking-wider text-white">PROJECT TITLE</h2>
+        </div>
+        <button onclick="closeModal()" class="border border-white px-2 py-0.5 text-xs font-bold hover:bg-white hover:text-black transition-colors">
+          [X] CLOSE
+        </button>
+      </div>
+
+      <div class="space-y-4">
+        <div class="w-full h-64 md:h-80 bg-neutral-900 border border-neutral-800 overflow-hidden">
+          <img id="modal-img" src="" alt="Detail View" class="w-full h-full object-cover">
+        </div>
+        <p id="modal-desc" class="text-xs md:text-sm text-neutral-300 leading-relaxed font-mono">
+          Project details...
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script src="config.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Parse category key from URL (e.g. category.html?type=industrial-design)
+      const params = new URLSearchParams(window.location.search);
+      const categoryKey = params.get("type");
+
+      if (!categoryKey || !CATEGORY_DATA[categoryKey]) {
+        window.location.href = "index.html";
+        return;
+      }
+
+      const data = CATEGORY_DATA[categoryKey];
+
+      // Set category header elements
+      document.getElementById("category-title").textContent = data.title;
+      document.getElementById("category-badge").textContent = data.title;
+      document.getElementById("category-hero-img").src = data.heroImage;
+
+      // Render grid items
+      const grid = document.getElementById("projects-grid");
+      grid.innerHTML = "";
+
+      data.projects.forEach((proj) => {
+        const card = document.createElement("div");
+        card.className = "tech-card cursor-pointer";
+        card.onclick = () => openModal(proj.title, proj.image, proj.description);
+
+        card.innerHTML = `
+          <div class="flex justify-end mb-[-1px]">
+            <div class="bg-black border border-white px-3 py-1 text-xs font-bold uppercase tracking-wider truncate max-w-[85%]">
+              ${proj.title}
+            </div>
+          </div>
+          <div class="double-border bg-black p-2">
+            <div class="w-full h-64 bg-neutral-900 overflow-hidden border border-neutral-800">
+              <img src="${proj.image}" alt="${proj.title}" class="w-full h-full object-cover contrast-125 hover:scale-105 transition-all duration-300">
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    });
+
+    // Modal Handlers (Including click-outside backdrop close)
+    function openModal(title, imgSrc, desc) {
+      document.getElementById('modal-title').textContent = title;
+      document.getElementById('modal-img').src = imgSrc;
+      document.getElementById('modal-desc').textContent = desc;
+      document.getElementById('modal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('modal').classList.add('hidden');
+    }
+
+    function handleBackdropClick(e) {
+      // Closes modal if clicking dark backdrop overlay outside main modal box
+      if (e.target.id === "modal") closeModal();
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+  </script>
+</body>
+</html>

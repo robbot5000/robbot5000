@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ROBBOT TECHNOLOGIES</title>
+  <title>PORTFOLIO // MID-2000s TECH INTERFACE</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     /* Dot Grid Background */
@@ -103,50 +103,8 @@
   <!-- LOWER GRID ROW (Folder / Category Cards) -->
   <main class="max-w-7xl mx-auto w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
 
-    <!-- Card 1: Industrial Design -->
-    <div class="tech-card cursor-pointer" onclick="openModalFromCard(this, 'INDUSTRIAL DESIGN', 'Structural product concepts, parametric furniture, and physical prototype engineering.')">
-      <div class="flex justify-end mb-[-1px]">
-        <div class="bg-black border border-white px-3 py-1 text-xs font-bold uppercase tracking-wider text-center max-w-[85%] truncate">
-          INDUSTRIAL DESIGN
-        </div>
-      </div>
-      <div class="double-border bg-black p-2">
-        <div class="w-full h-64 bg-neutral-900 overflow-hidden relative border border-neutral-800">
-          <img data-media="cardIndustrialDesign" src="" alt="Industrial Design" class="card-img w-full h-full object-cover filter grayscale contrast-125 hover:grayscale-0 transition-all duration-300">
-        </div>
-      </div>
-    </div>
-
-    <!-- Card 2: Lighting / Visuals -->
-    <div class="tech-card cursor-pointer" onclick="openModalFromCard(this, 'LIGHTING / VISUALS', 'Architectural lighting installations, live event visual programming, and spatial light mapping.')">
-      <div class="flex justify-end mb-[-1px]">
-        <div class="bg-black border border-white px-3 py-1 text-xs font-bold uppercase tracking-wider text-center max-w-[85%] truncate">
-          LIGHTING / VISUALS
-        </div>
-      </div>
-      <div class="double-border bg-black p-2">
-        <div class="w-full h-64 bg-neutral-900 overflow-hidden relative border border-neutral-800">
-          <img data-media="cardLightingVisuals" src="" alt="Lighting / Visuals" class="card-img w-full h-full object-cover contrast-125 hover:scale-105 transition-all duration-300">
-        </div>
-      </div>
-    </div>
-
-    <!-- Card 3: Graphics / Renders -->
-    <div class="tech-card cursor-pointer" onclick="openModalFromCard(this, 'GRAPHICS / RENDERS', 'High-fidelity 3D renderings, procedural visual assets, and brand system graphics.')">
-      <div class="flex justify-end mb-[-1px]">
-        <div class="bg-black border border-white px-3 py-1 text-xs font-bold uppercase tracking-wider text-center max-w-[85%] truncate">
-          GRAPHICS / RENDERS
-        </div>
-      </div>
-      <div class="double-border bg-black p-2">
-        <div class="w-full h-64 bg-neutral-950 flex items-center justify-center relative border border-neutral-800 overflow-hidden">
-          <img data-media="cardGraphicsRenders" src="" alt="Graphics / Renders" class="card-img w-full h-full object-cover filter contrast-125 hover:scale-105 transition-all duration-300">
-        </div>
-      </div>
-    </div>
-
-    <!-- Card 4: Interactive -->
-    <div class="tech-card cursor-pointer" onclick="openModalFromCard(this, 'INTERACTIVE', 'Custom WebGL applications, physical computing, and real-time sensory interface systems.')">
+    <!-- Card 1: Interactive -->
+    <div class="tech-card cursor-pointer" onclick="window.location.href='category.html?type=interactive'">
       <div class="flex justify-end mb-[-1px]">
         <div class="bg-black border border-white px-3 py-1 text-xs font-bold uppercase tracking-wider text-center max-w-[85%] truncate">
           INTERACTIVE
@@ -159,16 +117,58 @@
       </div>
     </div>
 
+    <!-- Card 2: Lighting / Visuals -->
+    <div class="tech-card cursor-pointer" onclick="window.location.href='category.html?type=lighting-visuals'">
+      <div class="flex justify-end mb-[-1px]">
+        <div class="bg-black border border-white px-3 py-1 text-xs font-bold uppercase tracking-wider text-center max-w-[85%] truncate">
+          LIGHTING / VISUALS
+        </div>
+      </div>
+      <div class="double-border bg-black p-2">
+        <div class="w-full h-64 bg-neutral-900 overflow-hidden relative border border-neutral-800">
+          <img data-media="cardLightingVisuals" src="" alt="Lighting / Visuals" class="card-img w-full h-full object-cover contrast-125 hover:scale-105 transition-all duration-300">
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3: Industrial Design -->
+    <div class="tech-card cursor-pointer" onclick="window.location.href='category.html?type=industrial-design'">
+      <div class="flex justify-end mb-[-1px]">
+        <div class="bg-black border border-white px-3 py-1 text-xs font-bold uppercase tracking-wider text-center max-w-[85%] truncate">
+          INDUSTRIAL DESIGN
+        </div>
+      </div>
+      <div class="double-border bg-black p-2">
+        <div class="w-full h-64 bg-neutral-900 overflow-hidden relative border border-neutral-800">
+          <img data-media="cardIndustrialDesign" src="" alt="Industrial Design" class="card-img w-full h-full object-cover filter grayscale contrast-125 hover:grayscale-0 transition-all duration-300">
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 4: Graphics / Renders -->
+    <div class="tech-card cursor-pointer" onclick="window.location.href='category.html?type=graphics-renders'">
+      <div class="flex justify-end mb-[-1px]">
+        <div class="bg-black border border-white px-3 py-1 text-xs font-bold uppercase tracking-wider text-center max-w-[85%] truncate">
+          GRAPHICS / RENDERS
+        </div>
+      </div>
+      <div class="double-border bg-black p-2">
+        <div class="w-full h-64 bg-neutral-950 flex items-center justify-center relative border border-neutral-800 overflow-hidden">
+          <img data-media="cardGraphicsRenders" src="" alt="Graphics / Renders" class="card-img w-full h-full object-cover filter contrast-125 hover:scale-105 transition-all duration-300">
+        </div>
+      </div>
+    </div>
+
   </main>
 
   <!-- FOOTER & CENTER ACCENT INDICATOR -->
   <footer class="flex flex-col items-center justify-center gap-3 py-4">
-    <!--<div class="w-2.5 h-2.5 bg-blue-600 transform rotate-45 border border-blue-400 shadow-[0_0_8px_rgba(37,99,235,0.8)]"></div>-->
+    <div class="w-2.5 h-2.5 bg-blue-600 transform rotate-45 border border-blue-400 shadow-[0_0_8px_rgba(37,99,235,0.8)]"></div>
     <p class="text-[10px] tracking-widest text-neutral-500 uppercase">SYS.PORTFOLIO_V2.0 // ALL RIGHTS RESERVED</p>
   </footer>
 
   <!-- DETAIL MODAL WINDOW -->
-  <div id="modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+  <div id="modal" onclick="handleBackdropClick(event)" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
     <div class="double-border bg-black w-full max-w-3xl p-3 relative shadow-2xl">
       <!-- Modal Header Bar -->
       <div class="flex justify-between items-center border-b border-white pb-2 mb-3">
@@ -262,12 +262,6 @@
       document.getElementById('modal').classList.remove('hidden');
     }
 
-    function openModalFromCard(cardEl, title, desc) {
-      const img = cardEl.querySelector('.card-img');
-      const imgSrc = img ? img.src : '';
-      openModal(title, imgSrc, desc);
-    }
-
     function openHeroModal() {
       const title = document.getElementById('hero-title').textContent;
       const imgSrc = document.getElementById('hero-img').src;
@@ -276,6 +270,10 @@
 
     function closeModal() {
       document.getElementById('modal').classList.add('hidden');
+    }
+
+    function handleBackdropClick(e) {
+      if (e.target.id === "modal") closeModal();
     }
 
     window.addEventListener('keydown', (e) => {
