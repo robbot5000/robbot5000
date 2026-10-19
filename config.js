@@ -20,6 +20,16 @@ const CATEGORY_DATA = {
     heroImage: "assets/industrial-design/lucite-dreams/All-3.356_webp.webp",
     projects: [
       {
+        title: "harmony",
+        image: "assets/industrial-design/harmony/photos/event-photos/18216863_798537746977151_7756060381350354147_o_webp.webp",
+        description: "Humber thesis project. Music therapy device for youth with Autism"
+      },        
+      {
+        title: "Tech-Hub",
+        image: "assets/industrial-design/tech-hub-copernicus/renders/DSCF0053_webp.webp756060381350354147_o_webp.webp",
+        description: "Humber 3rd year project. E-learning device secure storage & charging modular units."
+      }, 
+      {
         title: "LUCITE DREAMS",
         image: "assets/industrial-design/lucite-dreams/untitled.302_webp.webp",
         description: "Acrylic sheet furniture. Collaboration with design Dan Puntillo"
