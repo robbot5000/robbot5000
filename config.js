@@ -9,7 +9,7 @@ const SITE_MEDIA = {
   // LOWER FOLDER CARD COVERS
   cardIndustrialDesign: "assets/industrial-design/lucite-dreams/All-3.356_webp.webp",
   cardLightingVisuals: "assets/visuals-lighting/sojourn-2024/sojournstagetest_webp.webp",
-  cardGraphicsRenders: "assets/graphics-renders/posters/Felicia-UNITY_Poster-Portrait-rev2.jpg",
+  cardGraphicsRenders: "assets/graphics-renders/posters/tunel-Poster_wPromoters_webp.webp",
   cardInteractive: "assets/interactive/intel-encore/INTELAIEXHIBIT_W-13_webp.webp",
 
   // ADDITIONAL SECTION MEDIA
