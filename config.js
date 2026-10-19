@@ -21,12 +21,12 @@ const CATEGORY_DATA = {
     projects: [
       {
         title: "harmony",
-        image: "assets/industrial-design/harmony/photos/event-photos/18216863_798537746977151_7756060381350354147_o_webp.webp",
+        image: "assets/industrial-design/harmony/renders/Title_squarespace_webp.webp",
         description: "Humber thesis project. Music therapy device for youth with Autism"
       },        
       {
         title: "Tech-Hub",
-        image: "assets/industrial-design/tech-hub-copernicus/renders/DSCF0053_webp.webp756060381350354147_o_webp.webp",
+        image: "assets/industrial-design/tech-hub-copernicus/renders/DSCF0053_webp.webp",
         description: "Humber 3rd year project. E-learning device secure storage & charging modular units."
       }, 
       {
@@ -36,7 +36,7 @@ const CATEGORY_DATA = {
       },
       {
         title: "LENSBOTS SERIES 1",
-        image: "assets/industrial-design/lucite-dreams/All-3.356_webp.webp",
+        image: "assets/industrial-design/lensbots-series-1/Ad2_Circular.5_webp.webp",
         description: "Lil' robot guys."
       }
     ]
@@ -48,7 +48,7 @@ const CATEGORY_DATA = {
       {
         title: "SOJOURN 2024 STAGE",
         image: "assets/visuals-lighting/sojourn-2024/Sojourn-2024_Stage-v1_webp.webp",
-        description: "Architectural lighting installation, DMX signal routing, and real-time audio reactivity."
+        description: "Custom projection-mapped stage design for Sojourn Fest 2024. A collaboration with Prayfirstdiva."
       }
     ]
   },
