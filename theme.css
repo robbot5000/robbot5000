@@ -32,8 +32,14 @@ body {
   background-size: 16px 16px;
 }
 
-/* Anything clickable gets the "pointer" cursor variant */
-a, button, [onclick], .clickable { cursor: var(--cursor-pointer, pointer) !important; }
+/* Anything clickable gets the "hover" cursor variant */
+a, button, select, label[for], [onclick], .clickable { cursor: var(--cursor-pointer, pointer) !important; }
+
+/* Text fields get the "text" cursor variant */
+textarea,
+input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type="submit"]) {
+  cursor: var(--cursor-text, text) !important;
+}
 
 ::selection { background: var(--selected); color: var(--black); }
 

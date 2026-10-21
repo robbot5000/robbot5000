@@ -20,7 +20,7 @@ const THEME = {
   // at "white" or "black".)
   roles: {
     selected: "color1",  // active tab / selected element, modal dot
-    cursor:   "color2",  // mouse cursor
+    cursor:   "color2",  // color of the built-in arrow cursor (only used if cursor.mode is "arrow", or as the fallback)
     hover:    "color3"   // hovered tab / card / button, scrollbar hover
   },
 
@@ -68,6 +68,34 @@ const THEME = {
       tracking: "0.15em",
       transform: "uppercase",
       leading: 1.4
+    }
+  },
+
+  // 4. MOUSE CURSOR -------------------------------------------
+  // mode:     "custom" = your cursor files below
+  //           "arrow"  = built-in arrow in the roles.cursor color
+  //           "system" = the plain browser/OS cursor
+  // fallback: what to show if mode is "custom" but the files can't be loaded
+  //           ("arrow" or "system"). It switches automatically.
+  // folder:   where the cursor files live (names below are relative to it,
+  //           and are case-sensitive on GitHub Pages)
+  // states:   which file is used where. Each can be one file, or a list where
+  //           the first one the browser can use wins.
+  //             normal = everywhere
+  //             hover  = links, buttons, cards, tabs, dropdowns
+  //             text   = text fields
+  //           Use .cur files (or .png). Browsers can't use animated .ani cursors, so
+  //           those are skipped in favor of the next file in the list.
+  //           Other files in your pack you can swap in: Link Select, Alt Select,
+  //           Precision Select, Help Select, Handwriting, Move, Unavailable ...
+  cursor: {
+    mode: "custom",
+    fallback: "arrow",
+    folder: "assets/mouse-cursor/synthwave-night/",
+    states: {
+      normal: "Synthwave Normal Select.cur",
+      hover:  ["Synthwave Working.ani", "Synthwave Link Select.cur"],
+      text:   "Synthwave Text Select.cur"
     }
   }
 };
