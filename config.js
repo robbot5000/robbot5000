@@ -147,12 +147,12 @@ const NAV = {
 // AWARDS, FAVORITE TOOLS, CURRENTLY READING, FUN FACT.
 // links: rows with an empty href are hidden.
 const BIO = {
-  photo: "",
+  photo: "assets/branding/robbot5000-photos/DSC01336_edit-01_webp.webp",
   fields: [
-    { label: "NAME",         value: "[ your name ]" },
-    { label: "HANDLE",       value: "ROBBOT" },
+    { label: "NAME",         value: "Robert Rigo" },
+    { label: "HANDLE",       value: "@ROBBOT.5000" },
     { label: "OCCUPATION",   value: "[ job title ]" },
-    { label: "LOCATION",     value: "[ city ]" },
+    { label: "LOCATION",     value: "Toronto, ON" },
     { label: "EDUCATION",    value: "[ program ], Humber" },
     { label: "INTERESTS",    value: "[ interests ]" },
     { label: "SOFTWARE",     value: "TouchDesigner, [ more ]" },
@@ -177,7 +177,7 @@ const BIO = {
 // extraFields: anything the service needs sent along, e.g. { access_key: "..." }
 const CONTACT = {
   excerpt: "Contact me for collaborations / commission work!",
-  email: "you@example.com",
+  email: "design@robbot.tech",
   endpoint: "",
   extraFields: {},
   topics: ["COLLABORATION", "COMMISSION", "OTHER"]
