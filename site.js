@@ -70,9 +70,15 @@ function injectModal() {
   });
 }
 
-function openModal(title, imgSrc, desc) {
+// opts (optional): { fit: "contain", tall: true, pixelated: true }
+function openModal(title, imgSrc, desc, opts) {
+  opts = opts || {};
   $("modal-title").textContent = title;
-  mountMedia($("modal-media"), imgSrc, title, "w-full h-full object-cover");
+  $("modal-media").className = "w-full bg-neutral-900 border border-neutral-800 overflow-hidden " +
+    (opts.tall ? "h-[60vh]" : "h-64 md:h-80");
+  mountMedia($("modal-media"), imgSrc, title,
+    "w-full h-full " + (opts.fit === "contain" ? "object-contain" : "object-cover") +
+    (opts.pixelated ? " pixelated" : ""));
   $("modal-desc").textContent = desc || "";
   $("modal").classList.remove("hidden");
 }

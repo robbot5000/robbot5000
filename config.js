@@ -19,7 +19,7 @@ const THEME = {
   // "color1", "color2" or "color3". (You can also point a role
   // at "white" or "black".)
   roles: {
-    selected: "color1",  // active tab / selected element, modal dot, footer diamond
+    selected: "color1",  // active tab / selected element, modal dot
     cursor:   "color2",  // mouse cursor
     hover:    "color3"   // hovered tab / card / button, scrollbar hover
   },
@@ -183,11 +183,39 @@ const CONTACT = {
   topics: ["COLLABORATION", "COMMISSION", "OTHER"]
 };
 
-// CATEGORY PAGE DATA & PROJECTS
+// ============================================================
+// GALLERY SETTINGS
+// ============================================================
+// Gallery pages list a folder of your repo through GitHub, so fill this in
+// once. Repo must be public (it is if you use free GitHub Pages).
+const GITHUB = {
+  owner: "YOUR_GITHUB_USERNAME",
+  repo:  "YOUR_REPO_NAME",
+  branch: "main"
+};
+
+// Defaults for every gallery page. Override any of these inside a page's own
+// `gallery: { ... }` block.
+const GALLERY_DEFAULTS = {
+  maxColumns: 3,         // never more than this many columns (fewer on small screens)
+  minColumnWidth: 260,   // px; columns drop away on narrow screens to keep tiles this wide
+  pinPrefix: "pin_",     // files starting with this go to the top (alphabetical), then the rest
+  showTitles: true,      // label tab above each tile, made from the file name
+  pixelated: false       // true = crisp pixel-art scaling
+};
+
+// ============================================================
+// CATEGORY PAGE DATA
+// ============================================================
+// Every category has a page type:
+//   type: "project"  -> grid of project cards, each opening a detail popup (projects: [...])
+//   type: "gallery"  -> auto-built from a GitHub folder (gallery: { folder: "..." })
+// "parent" is the top tab the page belongs to (design, art) so BACK returns there.
 const CATEGORY_DATA = {
   "industrial-design": {
     title: "INDUSTRIAL DESIGN",
     parent: "design",
+    type: "project",   // "project" or "gallery"
     heroImage: "assets/industrial-design/lucite-dreams/All-3.356_webp.webp",
     projects: [
       {
@@ -215,6 +243,7 @@ const CATEGORY_DATA = {
   "lighting-visuals": {
     title: "LIGHTING / VISUALS",
     parent: "design",
+    type: "project",   // "project" or "gallery"
     heroImage: "assets/visuals-lighting/sojourn-2024/sojournstagetest_webp.webp",
     projects: [
       {
@@ -227,6 +256,7 @@ const CATEGORY_DATA = {
   "graphics-renders": {
     title: "GRAPHICS / RENDERS",
     parent: "design",
+    type: "project",   // "project" or "gallery"
     heroImage: "assets/graphics-renders/posters/NINE-0-NINE_March-Poster_PRE_webp.webp",
     projects: [
       {
@@ -239,6 +269,7 @@ const CATEGORY_DATA = {
   "interactive": {
     title: "INTERACTIVE",
     parent: "design",
+    type: "project",   // "project" or "gallery"
     heroImage: "assets/interactive/intel-encore/INTELAIEXHIBIT_W-13_webp.webp",
     projects: [
       {
@@ -251,6 +282,7 @@ const CATEGORY_DATA = {
   "electronics-builds": {
     title: "ELECTRONICS / BUILDS",
     parent: "art",
+    type: "project",   // "project" or "gallery"
     heroImage: "",   // add path
     projects: [
       { title: "ADD PROJECT", image: "", description: "Placeholder. Edit in config.js." }
@@ -259,6 +291,7 @@ const CATEGORY_DATA = {
   "touchdesigner": {
     title: "TOUCHDESIGNER",
     parent: "art",
+    type: "project",   // "project" or "gallery"
     heroImage: "",   // add path
     projects: [
       { title: "ADD PROJECT", image: "", description: "Placeholder. Edit in config.js." }
@@ -267,14 +300,17 @@ const CATEGORY_DATA = {
   "pixel-art": {
     title: "PIXEL ART",
     parent: "art",
+    type: "gallery",
     heroImage: "",   // add path
-    projects: [
-      { title: "ADD PROJECT", image: "", description: "Placeholder. Edit in config.js." }
-    ]
+    gallery: {
+      folder: "assets/art-experiments/pixel-art",  // every image in this GitHub folder shows up
+      pixelated: true                              // crisp, un-blurred scaling for pixel art
+    }
   },
   "random": {
     title: "RANDOM",
     parent: "art",
+    type: "project",   // "project" or "gallery"
     heroImage: "",   // add path
     projects: [
       { title: "ADD PROJECT", image: "", description: "Placeholder. Edit in config.js." }

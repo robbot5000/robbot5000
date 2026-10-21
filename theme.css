@@ -122,11 +122,6 @@ a, button, [onclick], .clickable { cursor: var(--cursor-pointer, pointer) !impor
 /* ---------- Accent elements ---------- */
 .accent-selected { color: var(--selected); }
 .dot-selected { background: var(--selected); }
-.diamond {
-  width: 10px; height: 10px; transform: rotate(45deg);
-  background: var(--selected);
-  box-shadow: 0 0 8px color-mix(in srgb, var(--selected) 80%, transparent);
-}
 
 /* ---------- Scrollbar ---------- */
 ::-webkit-scrollbar { width: 6px; height: 6px; }
@@ -188,3 +183,6 @@ a, button, [onclick], .clickable { cursor: var(--cursor-pointer, pointer) !impor
 .form-status[data-state="ok"]  { color: var(--selected); }
 .form-status[data-state="err"] { color: var(--hover); }
 .tab:disabled { opacity: .5; pointer-events: none; }
+
+/* Crisp scaling for pixel art */
+.pixelated { image-rendering: pixelated; }
