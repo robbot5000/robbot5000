@@ -199,9 +199,10 @@
         message: form.message.value.trim()
       };
 
+      const subject = "[" + data.topic + "] from " + data.name;
+
       // No form service configured yet: open the visitor's email app instead
       if (!CONTACT.endpoint) {
-        const subject = "[" + data.topic + "] from " + data.name;
         const body = data.message + "\n\n" + data.name + " <" + data.email + ">";
         window.location.href = "mailto:" + CONTACT.email +
           "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
@@ -215,9 +216,12 @@
         const res = await fetch(CONTACT.endpoint, {
           method: "POST",
           headers: { "Content-Type": "application/json", "Accept": "application/json" },
-          body: JSON.stringify(Object.assign({}, CONTACT.extraFields, data))
+          // subject / _subject = the email's subject line (different services read different names)
+          body: JSON.stringify(Object.assign({}, CONTACT.extraFields, data, { subject: subject, _subject: subject }))
         });
-        if (!res.ok) throw new Error("HTTP " + res.status);
+        let result = null;
+        try { result = await res.json(); } catch (e) {}
+        if (!res.ok || (result && result.success === false)) throw new Error("send failed");
         form.reset();
         setStatus("MESSAGE SENT. THANKS!", "ok");
       } catch (err) {

@@ -205,9 +205,9 @@ const BIO = {
 // extraFields: anything the service needs sent along, e.g. { access_key: "..." }
 const CONTACT = {
   excerpt: "Contact me for collaborations / commission work!",
-  email: "design@robbot.tech",
-  endpoint: "",
-  extraFields: {},
+  email: "info@robbot.tech",
+  endpoint: "https://api.web3forms.com/submit",
+  extraFields: { access_key: "c35fcbd5-6251-4fa3-9d8d-76615b7d9f9b" },
   topics: ["COLLABORATION", "COMMISSION", "OTHER"]
 };
 
