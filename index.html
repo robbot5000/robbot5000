@@ -1,194 +1,123 @@
 <!DOCTYPE html>
-<html lang="en" class="h-full bg-black">
+<html lang="en" class="h-full">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Robbot Technologies: interactive installations, lighting and visuals, industrial design, graphics and renders.">
   <title>ROBBOT TECHNOLOGIES</title>
+
+  <!-- Theme: config first, then theme.js (sets colors before first paint) -->
+  <script src="config.js"></script>
+  <script src="theme.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    /* Dot Grid Background */
-    .bg-dot-grid {
-      background-color: #000000;
-      background-image: radial-gradient(rgba(255, 255, 255, 0.25) 1px, transparent 1px);
-      background-size: 16px 16px;
-    }
-
-    /* Custom Tech Typography & Borders */
-    body {
-      font-family: 'Consolas', 'Courier New', monospace;
-    }
-
-    /* Double Border Effect */
-    .double-border {
-      border: 1px solid #ffffff;
-      outline: 1px solid #ffffff;
-      outline-offset: -4px;
-    }
-
-    .single-border {
-      border: 1px solid #ffffff;
-    }
-
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #000;
-      border: 1px solid #333;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #fff;
-    }
-
-    /* Subtle Card Hover Zoom & Glow */
-    .tech-card {
-      transition: transform 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-    }
-    .tech-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
-    }
-  </style>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="theme.css">
 </head>
-<body class="bg-dot-grid text-white min-h-screen flex flex-col justify-between p-4 md:p-8 select-none">
+<body class="bg-dot-grid min-h-screen flex flex-col justify-between p-4 md:p-8 select-none">
 
   <!-- TOP HEADER / MAIN HERO WINDOW -->
   <header class="max-w-7xl mx-auto w-full mb-6">
     <!-- Top Attached Navigation Tabs -->
-    <div class="flex justify-end gap-1 mb-[-1px] relative z-10">
-      <button onclick="switchTab('DESIGN')" class="nav-tab active-tab bg-white text-black text-xs md:text-sm font-bold uppercase px-4 py-1.5 border border-white hover:bg-white hover:text-black transition-colors">
-        DESIGN
-      </button>
-      <button onclick="switchTab('ART / EXPERIMENTS')" class="nav-tab bg-black text-white text-xs md:text-sm font-bold uppercase px-4 py-1.5 border border-white hover:bg-white hover:text-black transition-colors">
-        ART / EXPERIMENTS
-      </button>
-      <button onclick="switchTab('BIO')" class="nav-tab bg-black text-white text-xs md:text-sm font-bold uppercase px-4 py-1.5 border border-white hover:bg-white hover:text-black transition-colors">
-        BIO
-      </button>
-      <button onclick="switchTab('CONTACT')" class="nav-tab bg-black text-white text-xs md:text-sm font-bold uppercase px-4 py-1.5 border border-white hover:bg-white hover:text-black transition-colors">
-        CONTACT
-      </button>
-    </div>
+    <nav class="flex justify-end gap-1 mb-[-1px] relative z-10" aria-label="Sections">
+      <button onclick="switchTab('DESIGN')" class="nav-tab tab t-h3 is-active">DESIGN</button>
+      <button onclick="switchTab('ART / EXPERIMENTS')" class="nav-tab tab t-h3">ART / EXPERIMENTS</button>
+      <button onclick="switchTab('BIO')" class="nav-tab tab t-h3">BIO</button>
+      <button onclick="switchTab('CONTACT')" class="nav-tab tab t-h3">CONTACT</button>
+    </nav>
 
     <!-- Main Hero Display Frame -->
     <div class="double-border bg-black p-2 md:p-3 relative overflow-hidden">
-      <!-- Image Viewport -->
-      <div class="relative w-full h-[280px] sm:h-[360px] md:h-[420px] bg-neutral-900 overflow-hidden group cursor-pointer" onclick="openHeroModal()">
-        <!-- Background Hero Image mapped to config -->
-        <img id="hero-img" data-media="heroDesign" src="" alt="Main Display" class="w-full h-full object-cover filter brightness-75 contrast-125 group-hover:scale-105 transition-transform duration-500">
-        
-        <!-- Logo / Icon Block Overlay Top-Left -->
+      <div class="relative w-full h-[280px] sm:h-[360px] md:h-[420px] bg-neutral-900 overflow-hidden group clickable" onclick="openHeroModal()">
+        <img id="hero-img" data-media="heroDesign" src="" alt="Featured work" class="w-full h-full object-cover filter brightness-75 contrast-125 group-hover:scale-105 transition-transform duration-500">
+
+        <!-- Icon block, top-left -->
         <div class="absolute top-4 left-4 border border-white bg-black p-2 w-12 h-12 flex items-center justify-center z-10 shadow-lg">
-          <svg class="w-8 h-8 text-cyan-400 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-8 h-8 accent-selected animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
           </svg>
         </div>
 
-        <!-- Big Bold Title Overlay Bottom-Left -->
+        <!-- H1 -->
         <div class="absolute bottom-6 left-6 md:left-10 z-10">
-          <h1 id="hero-title" class="text-4xl sm:text-6xl md:text-8xl font-black tracking-tighter uppercase text-white drop-shadow-[0_4px_10px_rgba(0,0,0,0.9)]">
-            DESIGN
-          </h1>
+          <h1 id="hero-title" class="t-h1 drop-shadow-[0_4px_10px_rgba(0,0,0,0.9)]">DESIGN</h1>
         </div>
 
-        <!-- Scanning overlay effect -->
         <div class="absolute inset-0 bg-gradient-to-b from-transparent via-white/5 to-transparent pointer-events-none"></div>
       </div>
     </div>
   </header>
 
-  <!-- LOWER GRID ROW (Folder / Category Cards) -->
+  <!-- CATEGORY CARDS -->
   <main class="max-w-7xl mx-auto w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
 
-    <!-- Card 1: Interactive -->
-    <div class="tech-card cursor-pointer" onclick="window.location.href='category.html?type=interactive'">
+    <a class="tech-card" href="category.html?type=interactive">
       <div class="flex justify-end mb-[-1px]">
-        <div class="bg-black border border-white px-3 py-1 text-xs font-bold uppercase tracking-wider text-center max-w-[85%] truncate">
-          INTERACTIVE
-        </div>
+        <h3 class="card-label t-h3 text-center max-w-[85%] truncate">INTERACTIVE</h3>
       </div>
       <div class="double-border bg-black p-2">
         <div class="w-full h-64 bg-neutral-900 overflow-hidden relative border border-neutral-800">
-          <img data-media="cardInteractive" src="" alt="Interactive" class="card-img w-full h-full object-cover contrast-125 hover:scale-105 transition-all duration-300">
+          <img data-media="cardInteractive" src="" alt="Interactive" loading="lazy" decoding="async" class="w-full h-full object-cover contrast-125 hover:scale-105 transition-all duration-300">
         </div>
       </div>
-    </div>
+    </a>
 
-    <!-- Card 2: Lighting / Visuals -->
-    <div class="tech-card cursor-pointer" onclick="window.location.href='category.html?type=lighting-visuals'">
+    <a class="tech-card" href="category.html?type=lighting-visuals">
       <div class="flex justify-end mb-[-1px]">
-        <div class="bg-black border border-white px-3 py-1 text-xs font-bold uppercase tracking-wider text-center max-w-[85%] truncate">
-          LIGHTING / VISUALS
-        </div>
+        <h3 class="card-label t-h3 text-center max-w-[85%] truncate">LIGHTING / VISUALS</h3>
       </div>
       <div class="double-border bg-black p-2">
         <div class="w-full h-64 bg-neutral-900 overflow-hidden relative border border-neutral-800">
-          <img data-media="cardLightingVisuals" src="" alt="Lighting / Visuals" class="card-img w-full h-full object-cover contrast-125 hover:scale-105 transition-all duration-300">
+          <img data-media="cardLightingVisuals" src="" alt="Lighting / Visuals" loading="lazy" decoding="async" class="w-full h-full object-cover contrast-125 hover:scale-105 transition-all duration-300">
         </div>
       </div>
-    </div>
+    </a>
 
-    <!-- Card 3: Industrial Design -->
-    <div class="tech-card cursor-pointer" onclick="window.location.href='category.html?type=industrial-design'">
+    <a class="tech-card" href="category.html?type=industrial-design">
       <div class="flex justify-end mb-[-1px]">
-        <div class="bg-black border border-white px-3 py-1 text-xs font-bold uppercase tracking-wider text-center max-w-[85%] truncate">
-          INDUSTRIAL DESIGN
-        </div>
+        <h3 class="card-label t-h3 text-center max-w-[85%] truncate">INDUSTRIAL DESIGN</h3>
       </div>
       <div class="double-border bg-black p-2">
         <div class="w-full h-64 bg-neutral-900 overflow-hidden relative border border-neutral-800">
-          <img data-media="cardIndustrialDesign" src="" alt="Industrial Design" class="card-img w-full h-full object-cover filter grayscale contrast-125 hover:grayscale-0 transition-all duration-300">
+          <img data-media="cardIndustrialDesign" src="" alt="Industrial Design" loading="lazy" decoding="async" class="w-full h-full object-cover filter grayscale contrast-125 hover:grayscale-0 transition-all duration-300">
         </div>
       </div>
-    </div>
+    </a>
 
-    <!-- Card 4: Graphics / Renders -->
-    <div class="tech-card cursor-pointer" onclick="window.location.href='category.html?type=graphics-renders'">
+    <a class="tech-card" href="category.html?type=graphics-renders">
       <div class="flex justify-end mb-[-1px]">
-        <div class="bg-black border border-white px-3 py-1 text-xs font-bold uppercase tracking-wider text-center max-w-[85%] truncate">
-          GRAPHICS / RENDERS
-        </div>
+        <h3 class="card-label t-h3 text-center max-w-[85%] truncate">GRAPHICS / RENDERS</h3>
       </div>
       <div class="double-border bg-black p-2">
         <div class="w-full h-64 bg-neutral-950 flex items-center justify-center relative border border-neutral-800 overflow-hidden">
-          <img data-media="cardGraphicsRenders" src="" alt="Graphics / Renders" class="card-img w-full h-full object-cover filter contrast-125 hover:scale-105 transition-all duration-300">
+          <img data-media="cardGraphicsRenders" src="" alt="Graphics / Renders" loading="lazy" decoding="async" class="w-full h-full object-cover filter contrast-125 hover:scale-105 transition-all duration-300">
         </div>
       </div>
-    </div>
+    </a>
 
   </main>
 
-  <!-- FOOTER & CENTER ACCENT INDICATOR -->
+  <!-- FOOTER -->
   <footer class="flex flex-col items-center justify-center gap-3 py-4">
-    <p class="text-[10px] tracking-widest text-neutral-500 uppercase">SYS.PORTFOLIO_V2.0 // ALL RIGHTS RESERVED</p>
+    <div class="diamond" aria-hidden="true"></div>
+    <p class="t-small dim">SYS.PORTFOLIO_V2.0 // ALL RIGHTS RESERVED</p>
   </footer>
 
-  <!-- DETAIL MODAL WINDOW -->
-  <div id="modal" onclick="handleBackdropClick(event)" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+  <!-- DETAIL MODAL -->
+  <div id="modal" onclick="handleBackdropClick(event)" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="modal-title">
     <div class="double-border bg-black w-full max-w-3xl p-3 relative shadow-2xl">
-      <!-- Modal Header Bar -->
-      <div class="flex justify-between items-center border-b border-white pb-2 mb-3">
+      <div class="rule-b flex justify-between items-center pb-2 mb-3">
         <div class="flex items-center gap-2">
-          <span class="w-2 h-2 bg-blue-500 rounded-full inline-block"></span>
-          <h2 id="modal-title" class="font-bold text-sm md:text-base uppercase tracking-wider text-white">CATEGORY_TITLE</h2>
+          <span class="dot-selected w-2 h-2 rounded-full inline-block"></span>
+          <h2 id="modal-title" class="t-h2">CATEGORY_TITLE</h2>
         </div>
-        <button onclick="closeModal()" class="border border-white px-2 py-0.5 text-xs font-bold hover:bg-white hover:text-black transition-colors">
-          [X] CLOSE
-        </button>
+        <button onclick="closeModal()" class="tab t-h3">[X] CLOSE</button>
       </div>
 
-      <!-- Modal Content Area -->
       <div class="space-y-4">
         <div class="w-full h-64 md:h-80 bg-neutral-900 border border-neutral-800 overflow-hidden">
-          <img id="modal-img" src="" alt="Detail View" class="w-full h-full object-cover">
+          <img id="modal-img" src="" alt="Detail view" class="w-full h-full object-cover">
         </div>
-        <p id="modal-desc" class="text-xs md:text-sm text-neutral-300 leading-relaxed font-mono">
-          Detailed project metadata and description will be loaded here.
-        </p>
-        <div class="flex justify-between items-center text-[10px] text-neutral-500 border-t border-neutral-800 pt-2">
+        <p id="modal-desc" class="t-body text-neutral-300">Detailed project metadata and description will be loaded here.</p>
+        <div class="t-small dim flex justify-between items-center border-t border-neutral-800 pt-2">
           <span>STATUS: ONLINE</span>
           <span>FORMAT: IMAGE/WEBP</span>
         </div>
@@ -196,61 +125,41 @@
     </div>
   </div>
 
-  <!-- 1. LOAD CONFIG FILE -->
-  <script src="config.js"></script>
-
-  <!-- 2. INTERACTION & MEDIA BINDING SCRIPT -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      if (typeof SITE_MEDIA !== "undefined") {
-        applyConfigMedia();
-      }
+      if (typeof SITE_MEDIA !== "undefined") applyConfigMedia();
     });
 
     function applyConfigMedia() {
       document.querySelectorAll("[data-media]").forEach((el) => {
-        const key = el.getAttribute("data-media");
-        const path = SITE_MEDIA[key];
-
-        if (path && path.trim() !== "") {
-          if (el.tagName === "IMG") {
-            el.src = path;
-          } else if (el.tagName === "SOURCE") {
-            el.src = path;
-            el.parentElement.load();
-          } else {
-            el.style.backgroundImage = `url('${path}')`;
-          }
+        const path = SITE_MEDIA[el.getAttribute("data-media")];
+        if (!path || path.trim() === "") return;
+        if (el.tagName === "IMG") {
+          el.src = path;
+        } else if (el.tagName === "SOURCE") {
+          el.src = path;
+          el.parentElement.load();
+        } else {
+          el.style.backgroundImage = `url('${path}')`;
         }
       });
     }
 
+    const TAB_KEYS = {
+      'DESIGN': 'heroDesign',
+      'ART / EXPERIMENTS': 'heroArtExperiments',
+      'BIO': 'heroBio',
+      'CONTACT': 'heroContact'
+    };
+
     function switchTab(category) {
-      const heroTitle = document.getElementById('hero-title');
-      const heroImg = document.getElementById('hero-img');
-      
-      heroTitle.textContent = category;
+      document.getElementById('hero-title').textContent = category;
 
-      const tabKeyMap = {
-        'DESIGN': 'heroDesign',
-        'ART / EXPERIMENTS': 'heroArtExperiments',
-        'BIO': 'heroBio',
-        'CONTACT': 'heroContact'
-      };
+      const src = SITE_MEDIA[TAB_KEYS[category]];
+      if (src) document.getElementById('hero-img').src = src;
 
-      const mediaKey = tabKeyMap[category];
-      if (typeof SITE_MEDIA !== "undefined" && SITE_MEDIA[mediaKey]) {
-        heroImg.src = SITE_MEDIA[mediaKey];
-      }
-
-      document.querySelectorAll('.nav-tab').forEach(tab => {
-        if (tab.textContent.trim() === category) {
-          tab.classList.add('bg-white', 'text-black');
-          tab.classList.remove('bg-black', 'text-white');
-        } else {
-          tab.classList.remove('bg-white', 'text-black');
-          tab.classList.add('bg-black', 'text-white');
-        }
+      document.querySelectorAll('.nav-tab').forEach((tab) => {
+        tab.classList.toggle('is-active', tab.textContent.trim() === category);
       });
     }
 

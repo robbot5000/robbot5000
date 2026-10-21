@@ -1,0 +1,142 @@
+/* theme.css — shared styles for every page.
+   Colors and fonts come from THEME in config.js (via theme.js).
+   The fallbacks below only matter if theme.js fails to load. */
+
+:root {
+  --black: #000000;
+  --white: #ffffff;
+  --selected: #00ffff;
+  --cursor-color: #ff00ff;
+  --hover: #ffff00;
+
+  --h1-family: Consolas, 'Courier New', monospace;
+  --h2-family: Consolas, 'Courier New', monospace;
+  --h3-family: Consolas, 'Courier New', monospace;
+  --body-family: Consolas, 'Courier New', monospace;
+  --small-family: Consolas, 'Courier New', monospace;
+}
+
+/* ---------- Base ---------- */
+html, body { cursor: var(--cursor-default, default); }
+
+body {
+  background-color: var(--black);
+  color: var(--white);
+  font-family: var(--body-family);
+  font-size: var(--body-size, 0.875rem);
+}
+
+.bg-dot-grid {
+  background-color: var(--black);
+  background-image: radial-gradient(color-mix(in srgb, var(--white) 25%, transparent) 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+
+/* Anything clickable gets the "pointer" cursor variant */
+a, button, [onclick], .clickable { cursor: var(--cursor-pointer, pointer) !important; }
+
+::selection { background: var(--selected); color: var(--black); }
+
+/* ---------- Type scale (use these classes, not Tailwind text-* sizes) ---------- */
+.t-h1, .t-h2, .t-h3, .t-body, .t-small { margin: 0; }
+
+.t-h1 {
+  font-family: var(--h1-family); font-size: var(--h1-size); font-weight: var(--h1-weight);
+  letter-spacing: var(--h1-tracking); text-transform: var(--h1-transform); line-height: var(--h1-leading);
+}
+.t-h2 {
+  font-family: var(--h2-family); font-size: var(--h2-size); font-weight: var(--h2-weight);
+  letter-spacing: var(--h2-tracking); text-transform: var(--h2-transform); line-height: var(--h2-leading);
+}
+.t-h3 {
+  font-family: var(--h3-family); font-size: var(--h3-size); font-weight: var(--h3-weight);
+  letter-spacing: var(--h3-tracking); text-transform: var(--h3-transform); line-height: var(--h3-leading);
+}
+.t-body {
+  font-family: var(--body-family); font-size: var(--body-size); font-weight: var(--body-weight);
+  letter-spacing: var(--body-tracking); text-transform: var(--body-transform); line-height: var(--body-leading);
+}
+.t-small {
+  font-family: var(--small-family); font-size: var(--small-size); font-weight: var(--small-weight);
+  letter-spacing: var(--small-tracking); text-transform: var(--small-transform); line-height: var(--small-leading);
+}
+
+/* ---------- Frames & rules ---------- */
+.double-border {
+  border: 1px solid var(--white);
+  outline: 1px solid var(--white);
+  outline-offset: -4px;
+}
+.rule-b { border-bottom: 1px solid var(--white); }
+.dim { color: color-mix(in srgb, var(--white) 55%, var(--black)); }
+
+/* ---------- Tabs & buttons (one component, three states) ---------- */
+.tab {
+  display: inline-block;
+  background: var(--black);
+  color: var(--white);
+  border: 1px solid var(--white);
+  padding: 0.375rem 1rem;
+  transition: background-color .12s, color .12s, border-color .12s;
+}
+.tab:hover, .tab:focus-visible {
+  background: var(--hover); color: var(--black); border-color: var(--hover); outline: none;
+}
+.tab.is-active,
+.tab.is-active:hover {
+  background: var(--selected); color: var(--black); border-color: var(--selected);
+}
+
+/* ---------- Cards ---------- */
+.tech-card {
+  display: block;
+  width: 100%;
+  text-align: left;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  transition: transform .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+.tech-card:hover, .tech-card:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--hover) 45%, transparent);
+  outline: none;
+}
+.card-label {
+  background: var(--black);
+  color: var(--white);
+  border: 1px solid var(--white);
+  padding: 0.25rem 0.75rem;
+  transition: background-color .12s, color .12s, border-color .12s;
+}
+.tech-card:hover .card-label,
+.tech-card:focus-visible .card-label {
+  background: var(--hover); color: var(--black); border-color: var(--hover);
+}
+.tech-card:hover .double-border,
+.tech-card:focus-visible .double-border {
+  border-color: var(--hover); outline-color: var(--hover);
+}
+
+/* ---------- Accent elements ---------- */
+.accent-selected { color: var(--selected); }
+.dot-selected { background: var(--selected); }
+.diamond {
+  width: 10px; height: 10px; transform: rotate(45deg);
+  background: var(--selected);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--selected) 80%, transparent);
+}
+
+/* ---------- Scrollbar ---------- */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--black); border: 1px solid #333; }
+::-webkit-scrollbar-thumb { background: var(--white); }
+::-webkit-scrollbar-thumb:hover { background: var(--hover); }
+
+/* ---------- Keyboard focus ---------- */
+:focus-visible { outline: 2px solid var(--selected); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
