@@ -13,17 +13,15 @@
 </head>
 <body class="bg-dot-grid min-h-screen flex flex-col justify-between p-4 md:p-8 select-none">
 
-  <!-- HEADER -->
   <header class="max-w-7xl mx-auto w-full mb-6">
     <div class="flex justify-between items-center mb-2">
-      <a href="index.html" class="tab t-h3">&lt;= BACK TO MAIN</a>
+      <a id="back-link" href="index.html" class="tab t-h3">&lt;= BACK TO MAIN</a>
       <div id="category-badge" class="tab t-h3 is-active" style="cursor: var(--cursor-default)">CATEGORY</div>
     </div>
 
-    <!-- Category Hero Frame -->
     <div class="double-border bg-black p-2 md:p-3 relative overflow-hidden">
       <div class="relative w-full h-[280px] sm:h-[360px] bg-neutral-900 overflow-hidden">
-        <img id="category-hero-img" src="" alt="Category hero" class="w-full h-full object-cover filter brightness-75 contrast-125">
+        <div id="hero-media" class="absolute inset-0 filter brightness-75 contrast-125"></div>
         <div class="absolute bottom-6 left-6 md:left-10 z-10">
           <h1 id="category-title" class="t-h1 drop-shadow-[0_4px_10px_rgba(0,0,0,0.9)]">CATEGORY</h1>
         </div>
@@ -31,107 +29,50 @@
     </div>
   </header>
 
-  <!-- PROJECTS GRID -->
-  <main id="projects-grid" class="max-w-7xl mx-auto w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-8">
-    <!-- Project cards are generated from CATEGORY_DATA in config.js -->
-  </main>
+  <!-- Project cards are generated from CATEGORY_DATA in config.js -->
+  <main id="projects-grid" class="max-w-7xl mx-auto w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-8"></main>
 
-  <!-- FOOTER -->
   <footer class="flex flex-col items-center justify-center gap-3 py-4">
     <div class="diamond" aria-hidden="true"></div>
     <p class="t-small dim">SYS.PORTFOLIO_V2.0 // ALL RIGHTS RESERVED</p>
   </footer>
 
-  <!-- DETAIL MODAL -->
-  <div id="modal" onclick="handleBackdropClick(event)" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-    <div class="double-border bg-black w-full max-w-3xl p-3 relative shadow-2xl">
-      <div class="rule-b flex justify-between items-center pb-2 mb-3">
-        <div class="flex items-center gap-2">
-          <span class="dot-selected w-2 h-2 rounded-full inline-block"></span>
-          <h2 id="modal-title" class="t-h2">PROJECT TITLE</h2>
-        </div>
-        <button onclick="closeModal()" class="tab t-h3">[X] CLOSE</button>
-      </div>
-
-      <div class="space-y-4">
-        <div class="w-full h-64 md:h-80 bg-neutral-900 border border-neutral-800 overflow-hidden">
-          <img id="modal-img" src="" alt="Detail view" class="w-full h-full object-cover">
-        </div>
-        <p id="modal-desc" class="t-body text-neutral-300">Project details...</p>
-      </div>
-    </div>
-  </div>
-
+  <script src="site.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       // e.g. category.html?type=industrial-design
-      const categoryKey = new URLSearchParams(window.location.search).get("type");
-
-      if (!categoryKey || !CATEGORY_DATA[categoryKey]) {
+      const key = new URLSearchParams(window.location.search).get("type");
+      if (!key || !CATEGORY_DATA[key]) {
         window.location.href = "index.html";
         return;
       }
-
-      const data = CATEGORY_DATA[categoryKey];
+      const data = CATEGORY_DATA[key];
 
       document.title = data.title + " // ROBBOT TECHNOLOGIES";
-      document.getElementById("category-title").textContent = data.title;
-      document.getElementById("category-badge").textContent = data.title;
-      document.getElementById("category-hero-img").src = data.heroImage;
+      $("category-title").textContent = data.title;
+      $("category-badge").textContent = data.title;
+      // Back goes to the tab this category lives in (design, art, ...)
+      $("back-link").href = "index.html#" + (data.parent || "design");
+      mountMedia($("hero-media"), data.heroImage, data.title, "w-full h-full object-cover");
 
-      const grid = document.getElementById("projects-grid");
-      grid.innerHTML = "";
-
+      const grid = $("projects-grid");
+      grid.replaceChildren();
       data.projects.forEach((proj) => {
-        const card = document.createElement("button");
-        card.type = "button";
-        card.className = "tech-card";
-        card.onclick = () => openModal(proj.title, proj.image, proj.description);
-
-        // Build with DOM methods so titles/descriptions are never parsed as HTML
-        const labelWrap = document.createElement("div");
-        labelWrap.className = "flex justify-end mb-[-1px]";
-        const label = document.createElement("h3");
-        label.className = "card-label t-h3 truncate max-w-[85%]";
-        label.textContent = proj.title;
-        labelWrap.appendChild(label);
-
-        const frame = document.createElement("div");
-        frame.className = "double-border bg-black p-2";
-        const imgWrap = document.createElement("div");
-        imgWrap.className = "w-full h-64 bg-neutral-900 overflow-hidden border border-neutral-800";
-        const img = document.createElement("img");
-        img.src = proj.image;
-        img.alt = proj.title;
-        img.loading = "lazy";
-        img.decoding = "async";
-        img.className = "w-full h-full object-cover contrast-125 hover:scale-105 transition-all duration-300";
-        imgWrap.appendChild(img);
-        frame.appendChild(imgWrap);
-
-        card.appendChild(labelWrap);
-        card.appendChild(frame);
+        const card = html(
+          '<button type="button" class="tech-card">' +
+            '<div class="flex justify-end mb-[-1px]">' +
+              '<h3 class="card-label t-h3 truncate max-w-[85%]">' + esc(proj.title) + '</h3>' +
+            '</div>' +
+            '<div class="double-border bg-black p-2">' +
+              '<div class="card-media w-full h-64 bg-neutral-900 overflow-hidden border border-neutral-800"></div>' +
+            '</div>' +
+          '</button>'
+        );
+        mountMedia(card.querySelector(".card-media"), proj.image, proj.title,
+          "w-full h-full object-cover contrast-125 hover:scale-105 transition-all duration-300");
+        card.addEventListener("click", () => openModal(proj.title, proj.image, proj.description));
         grid.appendChild(card);
       });
-    });
-
-    function openModal(title, imgSrc, desc) {
-      document.getElementById('modal-title').textContent = title;
-      document.getElementById('modal-img').src = imgSrc;
-      document.getElementById('modal-desc').textContent = desc;
-      document.getElementById('modal').classList.remove('hidden');
-    }
-
-    function closeModal() {
-      document.getElementById('modal').classList.add('hidden');
-    }
-
-    function handleBackdropClick(e) {
-      if (e.target.id === "modal") closeModal();
-    }
-
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeModal();
     });
   </script>
 </body>

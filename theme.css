@@ -140,3 +140,51 @@ a, button, [onclick], .clickable { cursor: var(--cursor-pointer, pointer) !impor
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }
 }
+
+/* ============================================================
+   Added: placeholders, hero zoom, bio list, contact form
+   ============================================================ */
+
+/* Shown wherever an image path is empty or fails to load */
+.placeholder {
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .5rem;
+  background-color: var(--black);
+  background-image: repeating-linear-gradient(45deg, color-mix(in srgb, var(--white) 8%, transparent) 0 1px, transparent 1px 10px);
+  color: color-mix(in srgb, var(--white) 55%, var(--black));
+}
+
+/* Hero image zooms on hover only when the hero is clickable */
+.hero-media { transition: transform .5s; }
+.hero.clickable:hover .hero-media { transform: scale(1.05); }
+
+/* Bio list rows */
+.bio-row {
+  display: grid; grid-template-columns: 9rem 1fr; gap: 1rem;
+  padding: .75rem 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--white) 20%, transparent);
+}
+.bio-row dt { color: var(--selected); transition: color .12s; }
+.bio-row:hover dt { color: var(--hover); }
+.bio-row dd { margin: 0; }
+@media (max-width: 480px) {
+  .bio-row { grid-template-columns: 1fr; gap: .25rem; }
+}
+
+/* Contact form */
+.field-label { display: block; margin-bottom: .375rem; color: color-mix(in srgb, var(--white) 55%, var(--black)); }
+.field {
+  width: 100%;
+  background: var(--black); color: var(--white);
+  border: 1px solid var(--white); border-radius: 0;
+  padding: .625rem .75rem;
+  font-family: var(--body-family); font-size: var(--body-size);
+  color-scheme: dark; outline: none;
+  transition: border-color .12s, box-shadow .12s;
+}
+.field::placeholder { color: color-mix(in srgb, var(--white) 40%, var(--black)); }
+.field:hover { border-color: var(--hover); }
+.field:focus { border-color: var(--selected); box-shadow: 0 0 0 1px var(--selected); caret-color: var(--selected); }
+.form-status[data-state="ok"]  { color: var(--selected); }
+.form-status[data-state="err"] { color: var(--hover); }
+.tab:disabled { opacity: .5; pointer-events: none; }

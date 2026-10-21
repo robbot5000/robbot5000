@@ -86,13 +86,108 @@ const SITE_MEDIA = {
   cardIndustrialDesign: "assets/industrial-design/lucite-dreams/All-3.356_webp.webp",
   cardLightingVisuals: "assets/visuals-lighting/sojourn-2024/sojournstagetest_webp.webp",
   cardGraphicsRenders: "assets/graphics-renders/posters/NINE-0-NINE_March-Poster_PRE_webp.webp",
-  cardInteractive: "assets/interactive/intel-encore/INTELAIEXHIBIT_W-13_webp.webp"
+  cardInteractive: "assets/interactive/intel-encore/INTELAIEXHIBIT_W-13_webp.webp",
+
+  // ART / EXPERIMENTS CARDS  (empty "" = a NO SIGNAL placeholder is shown; add a path when ready)
+  cardElectronicsBuilds: "",
+  cardTouchdesigner: "",
+  cardPixelArt: "",
+  cardRandom: ""
+};
+
+// ============================================================
+// NAVIGATION
+// ============================================================
+// Top tabs, in order. Each has a label, a hero image key (from SITE_MEDIA)
+// and a view type:
+//   "categories" = grid of folder cards. Each card links to category.html?type=KEY
+//                  (KEY must exist in CATEGORY_DATA below)
+//   "bio"        = portrait + profile list (see BIO)
+//   "contact"    = excerpt + email form (see CONTACT)
+const NAV = {
+  design: {
+    label: "DESIGN",
+    hero: "heroDesign",
+    view: "categories",
+    categories: [
+      { key: "interactive",       label: "INTERACTIVE",       image: "cardInteractive" },
+      { key: "lighting-visuals",  label: "LIGHTING / VISUALS", image: "cardLightingVisuals" },
+      { key: "industrial-design", label: "INDUSTRIAL DESIGN", image: "cardIndustrialDesign", grayscale: true },
+      { key: "graphics-renders",  label: "GRAPHICS / RENDERS", image: "cardGraphicsRenders" }
+    ]
+  },
+  art: {
+    label: "ART / EXPERIMENTS",
+    hero: "heroArtExperiments",
+    view: "categories",
+    categories: [
+      { key: "electronics-builds", label: "ELECTRONICS / BUILDS", image: "cardElectronicsBuilds" },
+      { key: "touchdesigner",      label: "TOUCHDESIGNER",        image: "cardTouchdesigner" },
+      { key: "pixel-art",          label: "PIXEL ART",            image: "cardPixelArt" },
+      { key: "random",             label: "RANDOM",               image: "cardRandom" }
+    ]
+  },
+  bio: {
+    label: "BIO",
+    hero: "heroBio",
+    view: "bio"
+  },
+  contact: {
+    label: "CONTACT",
+    hero: "heroContact",
+    view: "contact"
+  }
+};
+
+// ============================================================
+// BIO PAGE
+// ============================================================
+// photo: path to your portrait ("" = placeholder). fields: add, remove or
+// reorder rows freely. Ideas: PRONOUNS, LANGUAGES, CLIENTS, EXHIBITED AT,
+// AWARDS, FAVORITE TOOLS, CURRENTLY READING, FUN FACT.
+// links: rows with an empty href are hidden.
+const BIO = {
+  photo: "",
+  fields: [
+    { label: "NAME",         value: "[ your name ]" },
+    { label: "HANDLE",       value: "ROBBOT" },
+    { label: "OCCUPATION",   value: "[ job title ]" },
+    { label: "LOCATION",     value: "[ city ]" },
+    { label: "EDUCATION",    value: "[ program ], Humber" },
+    { label: "INTERESTS",    value: "[ interests ]" },
+    { label: "SOFTWARE",     value: "TouchDesigner, [ more ]" },
+    { label: "HARDWARE",     value: "[ gear you build with ]" },
+    { label: "FOCUS",        value: "[ areas of work ]" },
+    { label: "CURRENTLY",    value: "[ what you're working on ]" },
+    { label: "AVAILABILITY", value: "Open to collaborations + commissions" }
+  ],
+  links: [
+    { label: "GITHUB",    href: "" },
+    { label: "INSTAGRAM", href: "" },
+    { label: "LINKEDIN",  href: "" }
+  ]
+};
+
+// ============================================================
+// CONTACT PAGE
+// ============================================================
+// email:    your address (used for the direct link and the fallback below)
+// endpoint: a form-service URL (Formspree, Web3Forms, etc.). While this is ""
+//           the Send button opens the visitor's email app, pre-filled.
+// extraFields: anything the service needs sent along, e.g. { access_key: "..." }
+const CONTACT = {
+  excerpt: "Contact me for collaborations / commission work!",
+  email: "you@example.com",
+  endpoint: "",
+  extraFields: {},
+  topics: ["COLLABORATION", "COMMISSION", "OTHER"]
 };
 
 // CATEGORY PAGE DATA & PROJECTS
 const CATEGORY_DATA = {
   "industrial-design": {
     title: "INDUSTRIAL DESIGN",
+    parent: "design",
     heroImage: "assets/industrial-design/lucite-dreams/All-3.356_webp.webp",
     projects: [
       {
@@ -119,6 +214,7 @@ const CATEGORY_DATA = {
   },
   "lighting-visuals": {
     title: "LIGHTING / VISUALS",
+    parent: "design",
     heroImage: "assets/visuals-lighting/sojourn-2024/sojournstagetest_webp.webp",
     projects: [
       {
@@ -130,6 +226,7 @@ const CATEGORY_DATA = {
   },
   "graphics-renders": {
     title: "GRAPHICS / RENDERS",
+    parent: "design",
     heroImage: "assets/graphics-renders/posters/NINE-0-NINE_March-Poster_PRE_webp.webp",
     projects: [
       {
@@ -141,6 +238,7 @@ const CATEGORY_DATA = {
   },
   "interactive": {
     title: "INTERACTIVE",
+    parent: "design",
     heroImage: "assets/interactive/intel-encore/INTELAIEXHIBIT_W-13_webp.webp",
     projects: [
       {
@@ -148,6 +246,38 @@ const CATEGORY_DATA = {
         image: "assets/interactive/intel-encore/INTELAIEXHIBIT_W-V1_webp.webp",
         description: "Real-time sensory tracking interface, physical computing, and custom spatial projection mapping."
       }
+    ]
+  },
+  "electronics-builds": {
+    title: "ELECTRONICS / BUILDS",
+    parent: "art",
+    heroImage: "",   // add path
+    projects: [
+      { title: "ADD PROJECT", image: "", description: "Placeholder. Edit in config.js." }
+    ]
+  },
+  "touchdesigner": {
+    title: "TOUCHDESIGNER",
+    parent: "art",
+    heroImage: "",   // add path
+    projects: [
+      { title: "ADD PROJECT", image: "", description: "Placeholder. Edit in config.js." }
+    ]
+  },
+  "pixel-art": {
+    title: "PIXEL ART",
+    parent: "art",
+    heroImage: "",   // add path
+    projects: [
+      { title: "ADD PROJECT", image: "", description: "Placeholder. Edit in config.js." }
+    ]
+  },
+  "random": {
+    title: "RANDOM",
+    parent: "art",
+    heroImage: "",   // add path
+    projects: [
+      { title: "ADD PROJECT", image: "", description: "Placeholder. Edit in config.js." }
     ]
   }
 };

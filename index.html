@@ -14,29 +14,20 @@
 </head>
 <body class="bg-dot-grid min-h-screen flex flex-col justify-between p-4 md:p-8 select-none">
 
-  <!-- TOP HEADER / MAIN HERO WINDOW -->
+  <!-- TOP: tabs + hero cover -->
   <header class="max-w-7xl mx-auto w-full mb-6">
-    <!-- Top Attached Navigation Tabs -->
-    <nav class="flex justify-end gap-1 mb-[-1px] relative z-10" aria-label="Sections">
-      <button onclick="switchTab('DESIGN')" class="nav-tab tab t-h3 is-active">DESIGN</button>
-      <button onclick="switchTab('ART / EXPERIMENTS')" class="nav-tab tab t-h3">ART / EXPERIMENTS</button>
-      <button onclick="switchTab('BIO')" class="nav-tab tab t-h3">BIO</button>
-      <button onclick="switchTab('CONTACT')" class="nav-tab tab t-h3">CONTACT</button>
-    </nav>
+    <nav id="nav" class="flex flex-wrap justify-end gap-1 mb-[-1px] relative z-10" aria-label="Sections"></nav>
 
-    <!-- Main Hero Display Frame -->
     <div class="double-border bg-black p-2 md:p-3 relative overflow-hidden">
-      <div class="relative w-full h-[280px] sm:h-[360px] md:h-[420px] bg-neutral-900 overflow-hidden group clickable" onclick="openHeroModal()">
-        <img id="hero-img" data-media="heroDesign" src="" alt="Featured work" class="w-full h-full object-cover filter brightness-75 contrast-125 group-hover:scale-105 transition-transform duration-500">
+      <div id="hero" class="hero relative w-full h-[280px] sm:h-[360px] md:h-[420px] bg-neutral-900 overflow-hidden">
+        <div id="hero-media" class="hero-media absolute inset-0 filter brightness-75 contrast-125"></div>
 
-        <!-- Icon block, top-left -->
         <div class="absolute top-4 left-4 border border-white bg-black p-2 w-12 h-12 flex items-center justify-center z-10 shadow-lg">
           <svg class="w-8 h-8 accent-selected animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
           </svg>
         </div>
 
-        <!-- H1 -->
         <div class="absolute bottom-6 left-6 md:left-10 z-10">
           <h1 id="hero-title" class="t-h1 drop-shadow-[0_4px_10px_rgba(0,0,0,0.9)]">DESIGN</h1>
         </div>
@@ -46,147 +37,211 @@
     </div>
   </header>
 
-  <!-- CATEGORY CARDS -->
-  <main class="max-w-7xl mx-auto w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-8">
+  <!-- TAB CONTENT (filled by renderView) -->
+  <main id="view" class="max-w-7xl mx-auto w-full mb-8"></main>
 
-    <a class="tech-card" href="category.html?type=interactive">
-      <div class="flex justify-end mb-[-1px]">
-        <h3 class="card-label t-h3 text-center max-w-[85%] truncate">INTERACTIVE</h3>
-      </div>
-      <div class="double-border bg-black p-2">
-        <div class="w-full h-64 bg-neutral-900 overflow-hidden relative border border-neutral-800">
-          <img data-media="cardInteractive" src="" alt="Interactive" loading="lazy" decoding="async" class="w-full h-full object-cover contrast-125 hover:scale-105 transition-all duration-300">
-        </div>
-      </div>
-    </a>
-
-    <a class="tech-card" href="category.html?type=lighting-visuals">
-      <div class="flex justify-end mb-[-1px]">
-        <h3 class="card-label t-h3 text-center max-w-[85%] truncate">LIGHTING / VISUALS</h3>
-      </div>
-      <div class="double-border bg-black p-2">
-        <div class="w-full h-64 bg-neutral-900 overflow-hidden relative border border-neutral-800">
-          <img data-media="cardLightingVisuals" src="" alt="Lighting / Visuals" loading="lazy" decoding="async" class="w-full h-full object-cover contrast-125 hover:scale-105 transition-all duration-300">
-        </div>
-      </div>
-    </a>
-
-    <a class="tech-card" href="category.html?type=industrial-design">
-      <div class="flex justify-end mb-[-1px]">
-        <h3 class="card-label t-h3 text-center max-w-[85%] truncate">INDUSTRIAL DESIGN</h3>
-      </div>
-      <div class="double-border bg-black p-2">
-        <div class="w-full h-64 bg-neutral-900 overflow-hidden relative border border-neutral-800">
-          <img data-media="cardIndustrialDesign" src="" alt="Industrial Design" loading="lazy" decoding="async" class="w-full h-full object-cover filter grayscale contrast-125 hover:grayscale-0 transition-all duration-300">
-        </div>
-      </div>
-    </a>
-
-    <a class="tech-card" href="category.html?type=graphics-renders">
-      <div class="flex justify-end mb-[-1px]">
-        <h3 class="card-label t-h3 text-center max-w-[85%] truncate">GRAPHICS / RENDERS</h3>
-      </div>
-      <div class="double-border bg-black p-2">
-        <div class="w-full h-64 bg-neutral-950 flex items-center justify-center relative border border-neutral-800 overflow-hidden">
-          <img data-media="cardGraphicsRenders" src="" alt="Graphics / Renders" loading="lazy" decoding="async" class="w-full h-full object-cover filter contrast-125 hover:scale-105 transition-all duration-300">
-        </div>
-      </div>
-    </a>
-
-  </main>
-
-  <!-- FOOTER -->
   <footer class="flex flex-col items-center justify-center gap-3 py-4">
     <div class="diamond" aria-hidden="true"></div>
     <p class="t-small dim">SYS.PORTFOLIO_V2.0 // ALL RIGHTS RESERVED</p>
   </footer>
 
-  <!-- DETAIL MODAL -->
-  <div id="modal" onclick="handleBackdropClick(event)" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-    <div class="double-border bg-black w-full max-w-3xl p-3 relative shadow-2xl">
-      <div class="rule-b flex justify-between items-center pb-2 mb-3">
-        <div class="flex items-center gap-2">
-          <span class="dot-selected w-2 h-2 rounded-full inline-block"></span>
-          <h2 id="modal-title" class="t-h2">CATEGORY_TITLE</h2>
-        </div>
-        <button onclick="closeModal()" class="tab t-h3">[X] CLOSE</button>
-      </div>
-
-      <div class="space-y-4">
-        <div class="w-full h-64 md:h-80 bg-neutral-900 border border-neutral-800 overflow-hidden">
-          <img id="modal-img" src="" alt="Detail view" class="w-full h-full object-cover">
-        </div>
-        <p id="modal-desc" class="t-body text-neutral-300">Detailed project metadata and description will be loaded here.</p>
-        <div class="t-small dim flex justify-between items-center border-t border-neutral-800 pt-2">
-          <span>STATUS: ONLINE</span>
-          <span>FORMAT: IMAGE/WEBP</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
+  <script src="site.js"></script>
   <script>
+    const TAB_KEYS = Object.keys(NAV);
+    let currentTab = null;
+
+    // ---------- Tabs ----------
+    function buildNav() {
+      const nav = $("nav");
+      TAB_KEYS.forEach((key) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "nav-tab tab t-h3";
+        b.dataset.tab = key;
+        b.textContent = NAV[key].label;
+        b.addEventListener("click", () => switchTab(key));
+        nav.appendChild(b);
+      });
+    }
+
+    function switchTab(key, opts) {
+      opts = opts || {};
+      if (!NAV[key]) key = TAB_KEYS[0];
+      currentTab = key;
+      const tab = NAV[key];
+
+      $("hero-title").textContent = tab.label;
+      mountMedia($("hero-media"), SITE_MEDIA[tab.hero], tab.label + " cover", "w-full h-full object-cover");
+      $("hero").classList.toggle("clickable", tab.view === "categories");
+
+      document.querySelectorAll(".nav-tab").forEach((b) => {
+        b.classList.toggle("is-active", b.dataset.tab === key);
+      });
+
+      renderView(tab);
+
+      // Remember the tab in the URL so "back" from a category page returns here
+      if (opts.updateHash !== false) history.replaceState(null, "", "#" + key);
+    }
+
+    function renderView(tab) {
+      const view = $("view");
+      view.replaceChildren();
+      if (tab.view === "categories") view.appendChild(categoriesView(tab));
+      else if (tab.view === "bio") view.appendChild(bioView());
+      else if (tab.view === "contact") view.appendChild(contactView());
+    }
+
+    // ---------- View: grid of category cards (DESIGN, ART / EXPERIMENTS) ----------
+    function categoriesView(tab) {
+      const grid = html('<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"></div>');
+      tab.categories.forEach((c) => {
+        const card = html(
+          '<a class="tech-card" href="category.html?type=' + encodeURIComponent(c.key) + '">' +
+            '<div class="flex justify-end mb-[-1px]">' +
+              '<h3 class="card-label t-h3 text-center max-w-[85%] truncate">' + esc(c.label) + '</h3>' +
+            '</div>' +
+            '<div class="double-border bg-black p-2">' +
+              '<div class="card-media w-full h-64 bg-neutral-900 overflow-hidden border border-neutral-800"></div>' +
+            '</div>' +
+          '</a>'
+        );
+        const cls = "w-full h-full object-cover contrast-125 hover:scale-105 transition-all duration-300" +
+                    (c.grayscale ? " grayscale hover:grayscale-0" : "");
+        mountMedia(card.querySelector(".card-media"), SITE_MEDIA[c.image], c.label, cls);
+        grid.appendChild(card);
+      });
+      return grid;
+    }
+
+    // ---------- View: BIO (portrait stays put, profile list scrolls) ----------
+    function bioView() {
+      const rows = BIO.fields.map((f) =>
+        '<div class="bio-row"><dt class="t-h3">' + esc(f.label) + '</dt><dd class="t-body">' + esc(f.value) + '</dd></div>'
+      ).join("");
+
+      const links = BIO.links.filter((l) => l.href && l.href.trim()).map((l) =>
+        '<a class="tab t-h3" href="' + esc(l.href) + '" target="_blank" rel="noopener">' + esc(l.label) + '</a>'
+      ).join("");
+
+      const section = html(
+        '<section class="grid grid-cols-1 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-4 md:gap-6 items-start">' +
+          '<div class="md:sticky md:top-6">' +
+            '<div class="flex justify-end mb-[-1px]"><h3 class="card-label t-h3">PORTRAIT</h3></div>' +
+            '<div class="double-border bg-black p-2">' +
+              '<div id="bio-photo" class="w-full aspect-[4/5] max-h-[calc(100vh-8rem)] bg-neutral-900 overflow-hidden border border-neutral-800"></div>' +
+            '</div>' +
+          '</div>' +
+          '<div>' +
+            '<div class="flex justify-end mb-[-1px]"><h3 class="card-label t-h3">PROFILE</h3></div>' +
+            '<div class="double-border bg-black p-4 md:p-6">' +
+              '<dl>' + rows + '</dl>' +
+              (links ? '<div class="flex flex-wrap gap-2 pt-5">' + links + '</div>' : '') +
+            '</div>' +
+          '</div>' +
+        '</section>'
+      );
+      mountMedia(section.querySelector("#bio-photo"), BIO.photo, "Portrait", "w-full h-full object-cover");
+      return section;
+    }
+
+    // ---------- View: CONTACT (excerpt + email form) ----------
+    function contactView() {
+      const topics = CONTACT.topics.map((t) => '<option value="' + esc(t) + '">' + esc(t) + '</option>').join("");
+
+      const section = html(
+        '<section class="grid grid-cols-1 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] gap-4 md:gap-6 items-start">' +
+          '<div>' +
+            '<div class="flex justify-end mb-[-1px]"><h3 class="card-label t-h3">OPEN CHANNEL</h3></div>' +
+            '<div class="double-border bg-black p-4 md:p-6">' +
+              '<p class="t-h2">' + esc(CONTACT.excerpt) + '</p>' +
+              '<p class="t-small dim mt-6">DIRECT: <a class="accent-selected underline" href="mailto:' + esc(CONTACT.email) + '">' + esc(CONTACT.email) + '</a></p>' +
+            '</div>' +
+          '</div>' +
+          '<div>' +
+            '<div class="flex justify-end mb-[-1px]"><h3 class="card-label t-h3">SEND MESSAGE</h3></div>' +
+            '<div class="double-border bg-black p-4 md:p-6">' +
+              '<form id="contact-form" class="space-y-4">' +
+                '<div><label class="field-label t-small" for="cf-name">NAME</label>' +
+                  '<input class="field" id="cf-name" name="name" type="text" autocomplete="name" required></div>' +
+                '<div><label class="field-label t-small" for="cf-email">EMAIL</label>' +
+                  '<input class="field" id="cf-email" name="email" type="email" autocomplete="email" required></div>' +
+                '<div><label class="field-label t-small" for="cf-topic">TOPIC</label>' +
+                  '<select class="field" id="cf-topic" name="topic">' + topics + '</select></div>' +
+                '<div><label class="field-label t-small" for="cf-message">MESSAGE</label>' +
+                  '<textarea class="field" id="cf-message" name="message" rows="6" required></textarea></div>' +
+                '<input type="text" name="company" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true">' +
+                '<div class="flex flex-wrap items-center gap-4">' +
+                  '<button type="submit" class="tab t-h3">SEND MESSAGE</button>' +
+                  '<p id="form-status" class="form-status t-small" role="status"></p>' +
+                '</div>' +
+              '</form>' +
+            '</div>' +
+          '</div>' +
+        '</section>'
+      );
+      section.querySelector("#contact-form").addEventListener("submit", submitContact);
+      return section;
+    }
+
+    async function submitContact(e) {
+      e.preventDefault();
+      const form = e.target;
+      const status = $("form-status");
+      const btn = form.querySelector("button[type=submit]");
+      const setStatus = (msg, state) => { status.textContent = msg; status.dataset.state = state || ""; };
+
+      if (form.company.value) return; // honeypot: bots fill this, people never see it
+
+      const data = {
+        name: form.name.value.trim(),
+        email: form.email.value.trim(),
+        topic: form.topic.value,
+        message: form.message.value.trim()
+      };
+
+      // No form service configured yet: open the visitor's email app instead
+      if (!CONTACT.endpoint) {
+        const subject = "[" + data.topic + "] from " + data.name;
+        const body = data.message + "\n\n" + data.name + " <" + data.email + ">";
+        window.location.href = "mailto:" + CONTACT.email +
+          "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+        setStatus("OPENING YOUR EMAIL APP...", "ok");
+        return;
+      }
+
+      btn.disabled = true;
+      setStatus("SENDING...", "");
+      try {
+        const res = await fetch(CONTACT.endpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "Accept": "application/json" },
+          body: JSON.stringify(Object.assign({}, CONTACT.extraFields, data))
+        });
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        form.reset();
+        setStatus("MESSAGE SENT. THANKS!", "ok");
+      } catch (err) {
+        setStatus("SEND FAILED. EMAIL ME DIRECTLY INSTEAD.", "err");
+      } finally {
+        btn.disabled = false;
+      }
+    }
+
+    // ---------- Hero click -> modal (only on grid tabs) ----------
+    $("hero").addEventListener("click", () => {
+      const tab = NAV[currentTab];
+      if (!tab || tab.view !== "categories") return;
+      openModal(tab.label + " // MAIN HERO VIEW", SITE_MEDIA[tab.hero],
+        "Primary featured exhibit highlighting overall work in " + tab.label + ".");
+    });
+
+    // ---------- Start ----------
     document.addEventListener("DOMContentLoaded", () => {
-      if (typeof SITE_MEDIA !== "undefined") applyConfigMedia();
+      buildNav();
+      switchTab(location.hash.slice(1), { updateHash: false });
     });
-
-    function applyConfigMedia() {
-      document.querySelectorAll("[data-media]").forEach((el) => {
-        const path = SITE_MEDIA[el.getAttribute("data-media")];
-        if (!path || path.trim() === "") return;
-        if (el.tagName === "IMG") {
-          el.src = path;
-        } else if (el.tagName === "SOURCE") {
-          el.src = path;
-          el.parentElement.load();
-        } else {
-          el.style.backgroundImage = `url('${path}')`;
-        }
-      });
-    }
-
-    const TAB_KEYS = {
-      'DESIGN': 'heroDesign',
-      'ART / EXPERIMENTS': 'heroArtExperiments',
-      'BIO': 'heroBio',
-      'CONTACT': 'heroContact'
-    };
-
-    function switchTab(category) {
-      document.getElementById('hero-title').textContent = category;
-
-      const src = SITE_MEDIA[TAB_KEYS[category]];
-      if (src) document.getElementById('hero-img').src = src;
-
-      document.querySelectorAll('.nav-tab').forEach((tab) => {
-        tab.classList.toggle('is-active', tab.textContent.trim() === category);
-      });
-    }
-
-    function openModal(title, imgSrc, desc) {
-      document.getElementById('modal-title').textContent = title;
-      document.getElementById('modal-img').src = imgSrc;
-      document.getElementById('modal-desc').textContent = desc;
-      document.getElementById('modal').classList.remove('hidden');
-    }
-
-    function openHeroModal() {
-      const title = document.getElementById('hero-title').textContent;
-      const imgSrc = document.getElementById('hero-img').src;
-      openModal(title + ' // MAIN HERO VIEW', imgSrc, 'Primary featured exhibit highlighting overall work in ' + title + '.');
-    }
-
-    function closeModal() {
-      document.getElementById('modal').classList.add('hidden');
-    }
-
-    function handleBackdropClick(e) {
-      if (e.target.id === "modal") closeModal();
-    }
-
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeModal();
-    });
+    window.addEventListener("hashchange", () => switchTab(location.hash.slice(1), { updateHash: false }));
   </script>
 </body>
 </html>
