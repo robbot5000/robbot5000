@@ -93,9 +93,9 @@ const THEME = {
     fallback: "arrow",
     folder: "assets/mouse-cursor/synthwave-night/",
     states: {
-      normal: "Synthwave Normal Select.cur",
-      hover:  "Synthwave Precision Select.cur",
-      text:   "Synthwave Text Select.cur"
+      normal: "Synthwave-Normal-Select.cur",
+      hover:  "Synthwave-Precision-Select.cur",
+      text:   "Synthwave-Text-Select.cur"
     }
   }
 };
