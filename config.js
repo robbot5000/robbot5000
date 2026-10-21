@@ -94,7 +94,7 @@ const THEME = {
     folder: "assets/mouse-cursor/synthwave-night/",
     states: {
       normal: "Synthwave Normal Select.cur",
-      hover:  ["Synthwave Working.ani", "Synthwave Link Select.cur"],
+      hover:  "Synthwave Precision Select.cur",
       text:   "Synthwave Text Select.cur"
     }
   }

@@ -3,7 +3,17 @@
 // You shouldn't need to edit this file; edit THEME in config.js instead.
 
 (function () {
-  if (typeof THEME === "undefined") return;
+  if (typeof THEME === "undefined") {
+    // config.js didn't load, almost always a typo in it (missing quote, comma or bracket)
+    console.error("[theme] config.js could not be read. Look for a typo in the last thing you edited; the red error above shows the line.");
+    document.addEventListener("DOMContentLoaded", function () {
+      const bar = document.createElement("div");
+      bar.textContent = "CONFIG ERROR // config.js could not be read. Check your last edit for a missing quote, comma or bracket (browser console, F12, shows the line).";
+      bar.style.cssText = "position:fixed;left:0;right:0;top:0;z-index:9999;padding:10px 14px;background:#000;color:#fff;border-bottom:2px solid #fff;font:12px Consolas,'Courier New',monospace;";
+      document.body.insertBefore(bar, document.body.firstChild);
+    });
+    return;
+  }
 
   const root = document.documentElement;
   const set = (name, value) => root.style.setProperty(name, value);
