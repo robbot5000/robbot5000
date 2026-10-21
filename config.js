@@ -196,7 +196,8 @@ const GALLERY_DEFAULTS = {
   maxColumns: 3,         // never more than this many columns (fewer on small screens)
   minColumnWidth: 260,   // px; columns drop away on narrow screens to keep tiles this wide
   pinPrefix: "pin_",     // files starting with this go to the top (alphabetical), then the rest
-  showTitles: true,      // label tab above each tile, made from the file name
+  style: "folder",       // "folder" = folder cards w/ titles, click to enlarge | "raw" = bare images, no click
+  showTitles: true,      // (folder style) label tab above each tile, made from the file name
   pixelated: false       // true = crisp pixel-art scaling
 };
 
@@ -300,7 +301,8 @@ const CATEGORY_DATA = {
     heroImage: "",   // add path
     gallery: {
       folder: "assets/pixel-art",  // every image in this GitHub folder shows up
-      pixelated: true                              // crisp, un-blurred scaling for pixel art
+      pixelated: true,             // crisp, un-blurred scaling for pixel art
+      style: "raw"                 // "raw" = bare images, "folder" = folder cards with titles
     }
   },
   "random": {

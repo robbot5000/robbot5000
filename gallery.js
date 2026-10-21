@@ -86,6 +86,16 @@ function galleryMessage(err, cfg) {
 
 // ---------- One tile ----------
 function galleryBuildTile(item, cfg) {
+  // Style B ("raw"): just the image. No frame, no title, no popup, transparent PNGs stay transparent.
+  if (cfg.style === "raw") {
+    const raw = html('<div class="gallery-raw"></div>');
+    item.img.alt = item.title;
+    item.img.className = "block w-full h-auto" + (cfg.pixelated ? " pixelated" : "");
+    raw.appendChild(item.img);
+    return raw;
+  }
+
+  // Style A ("folder", default): folder card with a title tab, click to enlarge
   const label = cfg.showTitles
     ? '<div class="flex justify-end mb-[-1px]"><h3 class="card-label t-h3 truncate max-w-[85%]">' + esc(item.title) + "</h3></div>"
     : "";
@@ -175,7 +185,7 @@ async function renderGalleryPage(container, data) {
     currentCols = cols;
 
     const colWidth = (width - GALLERY_GAP * (cols - 1)) / cols;
-    const overhead = (cfg.showTitles ? 46 : 18) + GALLERY_GAP; // label + frame + gap, in px
+    const overhead = (cfg.style === "raw" ? 0 : (cfg.showTitles ? 46 : 18)) + GALLERY_GAP; // label + frame + gap, in px
     const colEls = [];
     const heights = [];
 

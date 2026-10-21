@@ -96,11 +96,13 @@ a, button, [onclick], .clickable { cursor: var(--cursor-pointer, pointer) !impor
   background: none;
   border: 0;
   padding: 0;
-  transition: transform .15s ease-in-out, box-shadow .15s ease-in-out;
+  transition: transform .15s ease-in-out, filter .15s ease-in-out;
 }
 .tech-card:hover, .tech-card:focus-visible {
   transform: translateY(-2px);
-  box-shadow: 0 0 12px color-mix(in srgb, var(--hover) 45%, transparent);
+  /* drop-shadow follows the painted shape (tab + body), unlike box-shadow's rectangle */
+  filter: drop-shadow(0 0 3px color-mix(in srgb, var(--hover) 70%, transparent))
+          drop-shadow(0 0 9px color-mix(in srgb, var(--hover) 45%, transparent));
   outline: none;
 }
 .card-label {
