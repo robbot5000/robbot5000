@@ -299,7 +299,7 @@ const CATEGORY_DATA = {
     type: "gallery",
     heroImage: "",   // add path
     gallery: {
-      folder: "assets/art-experiments/pixel-art",  // every image in this GitHub folder shows up
+      folder: "assets/pixel-art",  // every image in this GitHub folder shows up
       pixelated: true                              // crisp, un-blurred scaling for pixel art
     }
   },
