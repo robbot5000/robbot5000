@@ -6,7 +6,7 @@ TouchDesigner, basic electrical engineering & PCB design
 - 💞️ I’m looking to collaborate on ...
 TouchDesigner & electronics projects that go towards a live event/ installation.
 - 📫 How to reach me ...
-- robbot.technologies@gmail.com
+- rob@robbot.tech
 
 <!---
 robbot5000/robbot5000 is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
