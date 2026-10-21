@@ -186,13 +186,9 @@ const CONTACT = {
 // ============================================================
 // GALLERY SETTINGS
 // ============================================================
-// Gallery pages list a folder of your repo through GitHub, so fill this in
-// once. Repo must be public (it is if you use free GitHub Pages).
-const GITHUB = {
-  owner: "YOUR_GITHUB_USERNAME",
-  repo:  "YOUR_REPO_NAME",
-  branch: "main"
-};
+// Gallery pages read gallery-manifest.json, a list of every image folder under
+// assets/. A GitHub Action (.github/workflows/gallery-manifest.yml) rebuilds it
+// automatically whenever you push changes inside assets/. Nothing to fill in here.
 
 // Defaults for every gallery page. Override any of these inside a page's own
 // `gallery: { ... }` block.

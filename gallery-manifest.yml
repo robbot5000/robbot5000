@@ -1,0 +1,39 @@
+name: Build gallery manifest
+
+# Rebuilds gallery-manifest.json whenever files under assets/ change.
+# You can also run it by hand: GitHub > Actions > Build gallery manifest > Run workflow.
+on:
+  push:
+    paths:
+      - "assets/**"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: gallery-manifest
+  cancel-in-progress: false
+
+jobs:
+  manifest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}   # newest commit of the branch, not just the one that triggered this
+
+      - name: Build manifest
+        run: python3 tools/build_gallery_manifest.py
+
+      - name: Commit manifest if it changed
+        run: |
+          if [ -n "$(git status --porcelain gallery-manifest.json)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add gallery-manifest.json
+            git commit -m "Update gallery manifest [skip ci]"
+            git push
+          else
+            echo "Manifest already up to date."
+          fi

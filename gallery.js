@@ -1,9 +1,10 @@
 // gallery.js — renders "gallery" type category pages.
-// Reads a folder from your GitHub repo (via the GitHub contents API), sorts it,
+// Reads the folder's file list from gallery-manifest.json (built by a GitHub
+// Action, see tools/build_gallery_manifest.py), sorts it,
 // and lays the images out in a masonry grid that respects each image's own
 // aspect ratio (landscape, portrait and square all work).
 //
-// Settings live in config.js: GITHUB, GALLERY_DEFAULTS and the page's own
+// Settings live in config.js: GALLERY_DEFAULTS and the page's own
 // `gallery: { ... }` block in CATEGORY_DATA.
 
 const GALLERY_IMAGE_EXT = /\.(png|jpe?g|gif|webp|avif|svg)$/i;
@@ -41,39 +42,25 @@ function galleryTitle(name, pinPrefix) {
   return t || name;
 }
 
-// ---------- Listing the GitHub folder ----------
+// ---------- Listing the folder (from gallery-manifest.json) ----------
+const GALLERY_MANIFEST_URL = "gallery-manifest.json";
+
 async function galleryListFolder(folder) {
-  const g = typeof GITHUB !== "undefined" ? GITHUB : null;
-  if (!g || !g.owner || !g.repo || /^YOUR_/i.test(g.owner) || /^YOUR_/i.test(g.repo)) {
-    throw { code: "unconfigured" };
-  }
-
-  const url = "https://api.github.com/repos/" + encodeURIComponent(g.owner) + "/" +
-    encodeURIComponent(g.repo) + "/contents/" + galleryUrlPath(folder) +
-    "?ref=" + encodeURIComponent(g.branch || "main");
-  const cacheKey = "gallery-cache:" + folder;
-
+  let manifest;
   try {
-    const res = await fetch(url, { headers: { Accept: "application/vnd.github+json" } });
-    if (res.status === 404) throw { code: "notfound" };
-    if (!res.ok) throw { code: "http", status: res.status };
-    const json = await res.json();
-    if (!Array.isArray(json)) throw { code: "notfound" };
-
-    const names = json
-      .filter((f) => f.type === "file" && GALLERY_IMAGE_EXT.test(f.name))
-      .map((f) => f.name);
-    try { localStorage.setItem(cacheKey, JSON.stringify(names)); } catch (e) {}
-    return names;
+    // no-cache = always check for a newer manifest (cheap: the browser revalidates)
+    const res = await fetch(GALLERY_MANIFEST_URL, { cache: "no-cache" });
+    if (res.status === 404) throw { code: "nomanifest" };
+    if (!res.ok) throw { code: "http" };
+    manifest = await res.json();
   } catch (err) {
-    if (err && err.code === "notfound") throw err;
-    // Rate-limited or offline: fall back to the last list this browser saw
-    try {
-      const cached = JSON.parse(localStorage.getItem(cacheKey));
-      if (Array.isArray(cached)) return cached;
-    } catch (e) {}
     throw err && err.code ? err : { code: "network" };
   }
+
+  const key = folder.replace(/^\/+|\/+$/g, "");
+  const names = manifest[key];
+  if (!Array.isArray(names)) throw { code: "notfound" };
+  return names.filter(function (n) { return GALLERY_IMAGE_EXT.test(n); });
 }
 
 function galleryLoadImage(url) {
@@ -88,10 +75,10 @@ function galleryLoadImage(url) {
 
 function galleryMessage(err, cfg) {
   switch (err && err.code) {
-    case "unconfigured":
-      return 'GALLERY SOURCE NOT SET // ADD YOUR GITHUB USERNAME AND REPO TO "GITHUB" IN config.js';
+    case "nomanifest":
+      return "gallery-manifest.json NOT FOUND // RUN THE 'BUILD GALLERY MANIFEST' ACTION ONCE (GITHUB > ACTIONS)";
     case "notfound":
-      return "FOLDER NOT FOUND // " + cfg.folder + " (CHECK THE PATH, THE BRANCH, AND THAT THE REPO IS PUBLIC)";
+      return "NO IMAGES FOUND IN " + cfg.folder + " // ADD IMAGES, PUSH, THEN WAIT FOR THE MANIFEST ACTION TO FINISH";
     default:
       return "GALLERY TEMPORARILY UNAVAILABLE // TRY AGAIN IN A BIT";
   }
