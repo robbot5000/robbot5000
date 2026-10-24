@@ -272,10 +272,70 @@ const CATEGORY_DATA = {
     heroImage: "assets/visuals-lighting/sojourn-2024/sojournstagetest_webp.webp",
     projects: [
       {
+        title: "DOCD BASS COAST 2024",
+        image: "assets/visuals-lighting/docd-bass-coast-2024/IMG20240428030229_webp.webp",
+        description: "Multi-projection interactive floor tracker. A collaboration with Prayfirstdiva."
+      },
+      {
+        title: "DOCD NO NEON 2023",
+        image: "assets/visuals-lighting/docd-no-neon-2023/20231028_022619_webp.webp",
+        description: "Multi-projection hacker-screen-terminal main stage build, installation and programming for DOCD x No Neon. A collaboration with Prayfirstdiva."
+      },
+      {
+        title: "DOCD NYE",
+        image: "assets/visuals-lighting/docd-nye/DOCD_NYE_3_webp.webp",
+        description: "First stage build, installation, programming and operating for techno room of DOCD NYE. Solo project."
+      },
+      {
+        title: "HNTRNET 2023",
+        image: "assets/visuals-lighting/hntrnet-2023/HNTRNET_V003_webp.webp",
+        description: "Holomesh screen stage build, installation, programming and operating for HNTRNET show at Coda. A collaboration with Prayfirstdiva."
+      },
+      {
+        title: "HNTRNET IRL",
+        image: "assets/visuals-lighting/hntrnet-irl/LED-Mesh-vs-Rear-Screen-Effect-Example_webp.webp",
+        description: "Blow-through LED panel stage build, programming and operating for HNTRNET IRL show at DPRTMNT. A collaboration with Prayfirstdiva."
+      },
+      {
+        title: "SIRKUIT 2024",
+        image: "assets/visuals-lighting/sirkuit-2024/IMG20240316014456_01_webp.webp",
+        description: "Custom LED bar + projection build, installation, programming and operating for main stage of Sirkuit. Solo project."
+      },
+      {
+        title: "TECHROMANCY 01",
+        image: "assets/visuals-lighting/techromancy-01/590283596_10164850211267269_5981170181316067098_n_webp.webp",
+        description: "Real-time Unreal Engine visuals on 5 separate projection screens for Techromancy 01. Solo project."
+      },
+      {
+        title: "TECHROMANCY 02",
+        image: "assets/visuals-lighting/techromancy-02/IMG20251206022742_webp.webp",
+        description: "Main stage real-time visuals & interactive projection-mapped cyber-DOS terminal for Techromancy 02. Solo project."
+      },
+      {
+        title: "DARK MATTER 2024",
+        image: "assets/visuals-lighting/dark-matter-2024/IMG20241025000051_webp.webp",
+        description: "Main stage multi-projection & screen build, installation, programming and operating for Last Planet & Deep Dark and Dangerous' Dark Matter 2023 event. A collaboration with Prayfirstdiva."
+      },
+      {
         title: "SOJOURN 2024 STAGE",
-        image: "assets/visuals-lighting/sojourn-2024/Sojourn-2024_Stage-v1_webp.webp",
-        description: "Custom projection-mapped stage design for Sojourn Fest 2024. A collaboration with Prayfirstdiva."
-      }
+        image: "assets/visuals-lighting/sojourn-2024/IMG20240727003921_webp.webp",
+        description: "Custom projection-mapped stage design build, installation, programming and operating for Sound Depot stage of Sojourn. A collaboration with Prayfirstdiva."
+      },
+      {
+        title: "THE INDUSTRY CINECYCLE",
+        image: "assets/visuals-lighting/techromancy-02/IMG20251206022742_webp.webp",
+        description: "Custom LED Bar installation, programming and operating for The Industry Cinecycle event. Solo project."
+      },
+      {
+        title: "THE INDUSTRY KAJAMA",
+        image: "assets/visuals-lighting/the-industry-kajama/20230522_004501_webp.webp",
+        description: "Custom LED Bar build, installation, programming and operating for The Industry Kajama boat party event. Solo project."
+      },
+      {
+        title: "COMFORT ZONE TRIBUNAL",
+        image: "assets/visuals-lighting/comfort-zone-tribunal/20230804_215613_webp.webp",
+        description: "Custom LED Bar installation and programming for Tribunal's Comfort Zone event. Solo project."
+      },
     ]
   },
   "graphics-renders": {
@@ -301,6 +361,16 @@ const CATEGORY_DATA = {
         title: "INTEL ENCORE EXHIBIT",
         image: "assets/interactive/intel-encore/INTELAIEXHIBIT_W-V1_webp.webp",
         description: "Real-time sensory tracking interface, physical computing, and custom spatial projection mapping."
+      },
+      {
+        title: "TECHROMANCY 03",
+        image: "assets/interactive/techromancy-03/IMG20260530235132_webp.webp",
+        description: "Interactive projection-mapped cyber-DOS teriminal LARP for Techromancy 03. Solo project."
+      },
+      {
+        title: "LTS SCANNING PORTAL",
+        image: "assets/interactive/lts-scanning-portal/IMG20260130231500_webp.webp",
+        description: "Interactive projection-mapped custom painting. A collaboration with Prayfirstdiva."
       }
     ]
   },
