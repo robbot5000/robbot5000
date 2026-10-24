@@ -93,24 +93,14 @@ const PROJECT_PAGES = {
     heroImage: "assets/visuals-lighting/dark-matter-2024/IMG20241025000051_webp.webp",
     blocks: [
       { type: "text", title: "OVERVIEW",
-        text: "Real-time sensory tracking interface, physical computing, and custom spatial projection mapping." },
+        text: "Main stage multi-projection & screen build, installation, programming and operating for Last Planet & Deep Dark and Dangerous' Dark Matter 2023 event. A collaboration with Prayfirstdiva." },
 
-      { type: "full", media: "assets/interactive/intel-encore/INTELAIEXHIBIT_W-V1_webp.webp",
-        caption: "[ optional caption ]" },
+      { type: "full", media: "assets/visuals-lighting/dark-matter-2024/IMG20241026031846_webp.webp",
+        caption: "EVENT PHOTO" },
 
-      { type: "left", media: "assets/interactive/intel-encore/INTELAIEXHIBIT_W-13_webp.webp",
-        title: "[ SECTION TITLE ]",
-        text: "[ Describe this part of the project. ]\n\n[ A blank line starts a new paragraph. ]" },
-
-      { type: "right", media: "assets/interactive/intel-encore/INTELAIEXHIBIT_W-V1_webp.webp",
-        title: "[ SECTION TITLE ]",
-        text: "[ Media on the right, text on the left. ]" },
-
-      { type: "gallery", title: "[ GALLERY ]", maxColumns: 2, style: "folder",
-        items: [
-          "assets/interactive/intel-encore/INTELAIEXHIBIT_W-V1_webp.webp",
-          "assets/interactive/intel-encore/INTELAIEXHIBIT_W-13_webp.webp"
-        ] }
+      { type: "left", media: "assets/visuals-lighting/dark-matter-2024/Vid20241024235930.mp4",
+        title: "DETAILS",
+        text: "A massive projection-mapped 39x9ft Tulle screen with a 14x8ft rear screen setup which created a parallax visual effect." }
     ]
   }
 
