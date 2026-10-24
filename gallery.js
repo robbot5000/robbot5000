@@ -1,14 +1,15 @@
-// gallery.js — renders "gallery" type category pages.
-// Reads the folder's file list from gallery-manifest.json (built by a GitHub
-// Action, see tools/build_gallery_manifest.py), sorts it,
-// and lays the images out in a masonry grid that respects each image's own
-// aspect ratio (landscape, portrait and square all work).
+// gallery.js — masonry galleries of images and videos.
+// Used by "gallery" category pages and by "gallery" blocks inside block pages.
 //
-// Settings live in config.js: GALLERY_DEFAULTS and the page's own
-// `gallery: { ... }` block in CATEGORY_DATA.
+// A gallery gets its files from ONE of:
+//   folder: "assets/some-folder"       (listed via gallery-manifest.json, see tools/build_gallery_manifest.py)
+//   items:  ["a.webp", "b.mp4", {src: "...", title: "..."}, "https://youtu.be/..."]   (your own order)
+// plus the settings in GALLERY_DEFAULTS (config.js): maxColumns, minColumnWidth,
+// pinPrefix, style ("folder" | "raw"), showTitles, pixelated.
 
-const GALLERY_IMAGE_EXT = /\.(png|jpe?g|gif|webp|avif|svg)$/i;
+const GALLERY_MEDIA_EXT = /\.(png|jpe?g|gif|webp|avif|svg|mp4|webm|mov|m4v|ogv)$/i;
 const GALLERY_GAP = 16; // px between tiles and columns
+const GALLERY_MANIFEST_URL = "gallery-manifest.json";
 
 function galleryConfig(data) {
   return Object.assign({}, GALLERY_DEFAULTS, data.gallery || {});
@@ -42,9 +43,12 @@ function galleryTitle(name, pinPrefix) {
   return t || name;
 }
 
-// ---------- Listing the folder (from gallery-manifest.json) ----------
-const GALLERY_MANIFEST_URL = "gallery-manifest.json";
+function galleryBaseName(src) {
+  const base = String(src).split(/[?#]/)[0].split("/").pop();
+  try { return decodeURIComponent(base); } catch (e) { return base; }
+}
 
+// ---------- Listing a folder (from gallery-manifest.json) ----------
 async function galleryListFolder(folder) {
   let manifest;
   try {
@@ -60,17 +64,7 @@ async function galleryListFolder(folder) {
   const key = folder.replace(/^\/+|\/+$/g, "");
   const names = manifest[key];
   if (!Array.isArray(names)) throw { code: "notfound" };
-  return names.filter(function (n) { return GALLERY_IMAGE_EXT.test(n); });
-}
-
-function galleryLoadImage(url) {
-  return new Promise(function (resolve) {
-    const img = new Image();
-    img.decoding = "async";
-    img.onload = function () { resolve(img); };
-    img.onerror = function () { resolve(null); };
-    img.src = url;
-  });
+  return names.filter(function (n) { return GALLERY_MEDIA_EXT.test(n); });
 }
 
 function galleryMessage(err, cfg) {
@@ -84,14 +78,54 @@ function galleryMessage(err, cfg) {
   }
 }
 
+// ---------- Loading one file so we know its real shape before placing it ----------
+function galleryLoadMedia(src) {
+  return new Promise(function (resolve) {
+    if (embedSrc(src)) { // YouTube / Vimeo link
+      resolve({ el: buildMedia(src, { alt: "video" }), ratio: 16 / 9, kind: "embed" });
+      return;
+    }
+    if (isVideoSrc(src)) {
+      const v = document.createElement("video");
+      v.preload = "metadata";
+      v.muted = true;
+      v.setAttribute("muted", "");
+      v.loop = true;
+      v.playsInline = true;
+      v.onloadedmetadata = function () {
+        resolve({ el: v, kind: "video", w: v.videoWidth, h: v.videoHeight,
+                  ratio: (v.videoWidth || 16) / (v.videoHeight || 9) });
+      };
+      v.onerror = function () { resolve(null); };
+      v.src = src;
+      return;
+    }
+    const img = new Image();
+    img.decoding = "async";
+    img.onload = function () {
+      resolve({ el: img, kind: "image", w: img.naturalWidth, h: img.naturalHeight,
+                ratio: (img.naturalWidth || 1) / (img.naturalHeight || 1) });
+    };
+    img.onerror = function () { resolve(null); };
+    img.src = src;
+  });
+}
+
 // ---------- One tile ----------
 function galleryBuildTile(item, cfg) {
-  // Style B ("raw"): just the image. No frame, no title, no popup, transparent PNGs stay transparent.
+  const m = item.media;
+
+  if (m.kind !== "embed") {
+    m.el.className = "block w-full h-auto" +
+      (cfg.style === "raw" ? "" : " transition-transform duration-300 hover:scale-105") +
+      (cfg.pixelated && m.kind === "image" ? " pixelated" : "");
+    if (m.kind === "image") m.el.alt = item.title;
+  }
+
+  // Style B ("raw"): just the media. No frame, no title, no popup; transparent PNGs stay transparent.
   if (cfg.style === "raw") {
     const raw = html('<div class="gallery-raw"></div>');
-    item.img.alt = item.title;
-    item.img.className = "block w-full h-auto" + (cfg.pixelated ? " pixelated" : "");
-    raw.appendChild(item.img);
+    raw.appendChild(m.el);
     return raw;
   }
 
@@ -99,78 +133,83 @@ function galleryBuildTile(item, cfg) {
   const label = cfg.showTitles
     ? '<div class="flex justify-end mb-[-1px]"><h3 class="card-label t-h3 truncate max-w-[85%]">' + esc(item.title) + "</h3></div>"
     : "";
+  const tag = m.kind === "embed" ? "div" : "button"; // a video player can't live inside a button
   const tile = html(
-    '<button type="button" class="tech-card">' + label +
+    "<" + tag + ' class="tech-card"' + (tag === "button" ? ' type="button"' : "") + ">" + label +
       '<div class="double-border bg-black p-2">' +
         '<div class="tile-media overflow-hidden border border-neutral-800 bg-neutral-900"></div>' +
       "</div>" +
-    "</button>"
+    "</" + tag + ">"
   );
+  tile.querySelector(".tile-media").appendChild(m.el);
 
-  const img = item.img;
-  img.alt = item.title;
-  img.className = "block w-full h-auto transition-transform duration-300 hover:scale-105" +
-    (cfg.pixelated ? " pixelated" : "");
-  tile.querySelector(".tile-media").appendChild(img);
-
-  tile.addEventListener("click", function () {
-    openModal(item.title, img.src, img.naturalWidth + " × " + img.naturalHeight + " PX",
-      { fit: "contain", tall: true, pixelated: cfg.pixelated });
-  });
+  if (m.kind !== "embed") {
+    tile.addEventListener("click", function () {
+      openModal(item.title, item.src, m.w + " × " + m.h + " PX",
+        { fit: "contain", tall: true, pixelated: cfg.pixelated });
+    });
+  }
   return tile;
 }
 
-// ---------- Page renderer ----------
-async function renderGalleryPage(container, data) {
-  const cfg = galleryConfig(data);
-
+// ---------- Gallery renderer ----------
+async function renderGallery(container, cfg) {
   container.replaceChildren();
   const status = html('<div class="double-border bg-black p-8 text-center"><p class="t-small dim"></p></div>');
   const statusText = status.querySelector("p");
   statusText.textContent = "LOADING GALLERY...";
   container.appendChild(status);
 
-  let names;
-  try {
-    names = await galleryListFolder(cfg.folder);
-  } catch (err) {
-    statusText.textContent = galleryMessage(err, cfg);
-    return;
-  }
-  if (!names.length) {
-    statusText.textContent = "NO IMAGES YET // ADD FILES TO " + cfg.folder;
+  // 1. Work out the list of files
+  let entries; // [{ src, title }]
+  if (Array.isArray(cfg.items) && cfg.items.length) {
+    entries = cfg.items.map(function (it) {
+      const src = typeof it === "string" ? it : (it && it.src) || "";
+      let title = (it && typeof it === "object" && it.title) || "";
+      if (!title) title = embedSrc(src) ? "video" : galleryTitle(galleryBaseName(src), cfg.pinPrefix);
+      return { src: src, title: title };
+    });
+  } else if (cfg.folder) {
+    let names;
+    try {
+      names = await galleryListFolder(cfg.folder);
+    } catch (err) {
+      statusText.textContent = galleryMessage(err, cfg);
+      return;
+    }
+    if (!names.length) {
+      statusText.textContent = "NO IMAGES YET // ADD FILES TO " + cfg.folder;
+      return;
+    }
+    names = gallerySort(names, cfg.pinPrefix);
+    const base = galleryUrlPath(cfg.folder);
+    entries = names.map(function (n) {
+      return { src: base + "/" + encodeURIComponent(n), title: galleryTitle(n, cfg.pinPrefix) };
+    });
+  } else {
+    statusText.textContent = "GALLERY HAS NO folder OR items SET";
     return;
   }
 
-  names = gallerySort(names, cfg.pinPrefix);
-
-  // Load every image first so we know its real shape before placing it
-  const base = galleryUrlPath(cfg.folder);
-  const loaded = await Promise.all(names.map(function (n) {
-    return galleryLoadImage(base + "/" + encodeURIComponent(n)).then(function (img) {
-      return img ? { name: n, img: img } : null;
+  // 2. Load every file first so we know its real shape before placing it
+  const loaded = await Promise.all(entries.map(function (e) {
+    return galleryLoadMedia(e.src).then(function (media) {
+      return media ? { src: e.src, title: e.title, media: media } : null;
     });
   }));
 
-  const tiles = loaded.filter(Boolean).map(function (it) {
-    const item = {
-      title: galleryTitle(it.name, cfg.pinPrefix),
-      img: it.img
-    };
-    return {
-      el: galleryBuildTile(item, cfg),
-      ratio: (it.img.naturalWidth || 1) / (it.img.naturalHeight || 1)
-    };
+  const tiles = loaded.filter(Boolean).map(function (item) {
+    return { el: galleryBuildTile(item, cfg), ratio: item.media.ratio, media: item.media };
   });
 
   if (!tiles.length) {
-    statusText.textContent = "NO IMAGES COULD BE LOADED FROM " + cfg.folder;
+    statusText.textContent = "NOTHING COULD BE LOADED FOR THIS GALLERY";
     return;
   }
 
-  // ---------- Masonry layout ----------
-  // Tiles are placed in sorted order, each into the currently shortest column,
-  // so pinned items land at the top and reading order stays roughly row by row.
+  // 3. Masonry layout.
+  // Tiles are placed in order, each into the currently shortest column, so pinned
+  // items land at the top and reading order stays roughly row by row.
   const wrap = html('<div class="flex items-start" style="gap:' + GALLERY_GAP + 'px"></div>');
   container.replaceChildren(wrap);
   let currentCols = 0;
@@ -206,9 +245,16 @@ async function renderGalleryPage(container, data) {
   }
 
   layout(true);
+  tiles.forEach(function (t) { if (t.media.kind === "video") autoplayWhenVisible(t.media.el); });
+
   if (window.ResizeObserver) {
     new ResizeObserver(function () { layout(false); }).observe(container);
   } else {
     window.addEventListener("resize", function () { layout(false); });
   }
+}
+
+// A whole category page that is one gallery (config: type: "gallery", gallery: { ... })
+function renderGalleryPage(container, data) {
+  return renderGallery(container, galleryConfig(data));
 }

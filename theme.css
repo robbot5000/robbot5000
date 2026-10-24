@@ -194,3 +194,7 @@ input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type=
 
 /* Crisp scaling for pixel art */
 .pixelated { image-rendering: pixelated; }
+
+/* Block pages: give an empty / failed media slot a sensible shape */
+.placeholder { min-height: 12rem; }
+.media-slot:has(.placeholder) { aspect-ratio: 16 / 9; }
