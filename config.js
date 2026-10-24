@@ -323,7 +323,7 @@ const CATEGORY_DATA = {
       },
       {
         title: "THE INDUSTRY CINECYCLE",
-        image: "assets/visuals-lighting/techromancy-02/IMG20251206022742_webp.webp",
+        image: "assets/visuals-lighting/the-industry-cinecycle/20230811_230155_webp.webp",
         description: "Custom LED Bar installation, programming and operating for The Industry Cinecycle event. Solo project."
       },
       {

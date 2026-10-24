@@ -85,6 +85,33 @@ const PROJECT_PAGES = {
       // { type: "full", media: "https://www.youtube.com/watch?v=xxxxxxxxxxx" },
       // { type: "gallery", folder: "assets/interactive/intel-encore/photos" },
     ]
+  },
+
+  "dark-matter-2024": {
+    title: "DARK MATTER STAGE 2024",
+    category: "lighting-visuals",
+    heroImage: "assets/visuals-lighting/dark-matter-2024/IMG20241025000051_webp.webp",
+    blocks: [
+      { type: "text", title: "OVERVIEW",
+        text: "Real-time sensory tracking interface, physical computing, and custom spatial projection mapping." },
+
+      { type: "full", media: "assets/interactive/intel-encore/INTELAIEXHIBIT_W-V1_webp.webp",
+        caption: "[ optional caption ]" },
+
+      { type: "left", media: "assets/interactive/intel-encore/INTELAIEXHIBIT_W-13_webp.webp",
+        title: "[ SECTION TITLE ]",
+        text: "[ Describe this part of the project. ]\n\n[ A blank line starts a new paragraph. ]" },
+
+      { type: "right", media: "assets/interactive/intel-encore/INTELAIEXHIBIT_W-V1_webp.webp",
+        title: "[ SECTION TITLE ]",
+        text: "[ Media on the right, text on the left. ]" },
+
+      { type: "gallery", title: "[ GALLERY ]", maxColumns: 2, style: "folder",
+        items: [
+          "assets/interactive/intel-encore/INTELAIEXHIBIT_W-V1_webp.webp",
+          "assets/interactive/intel-encore/INTELAIEXHIBIT_W-13_webp.webp"
+        ] }
+    ]
   }
 
 };
