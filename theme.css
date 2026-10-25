@@ -197,4 +197,27 @@ input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type=
 
 /* Block pages: give an empty / failed media slot a sensible shape */
 .placeholder { min-height: 12rem; }
-.media-slot:has(.placeholder) { aspect-ratio: 16 / 9; }
+.media-slot:has(> .placeholder) { aspect-ratio: 16 / 9; }
+
+/* Slideshows (block media, hero covers) and the popup's prev / next arrows */
+.slide-arrow {
+  position: absolute; top: 50%; transform: translateY(-50%); z-index: 20;
+  width: 2.25rem; height: 2.75rem;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--black); color: var(--white);
+  border: 1px solid var(--white); border-radius: 0;
+  font-family: var(--h3-family); font-weight: 700; font-size: 1rem; line-height: 1;
+  transition: background-color .12s, color .12s, border-color .12s;
+}
+.slide-prev { left: .5rem; }
+.slide-next { right: .5rem; }
+.slide-arrow:hover, .slide-arrow:focus-visible {
+  background: var(--hover); color: var(--black); border-color: var(--hover); outline: none;
+}
+.slide-counter {
+  position: absolute; right: .5rem; bottom: .5rem; z-index: 20;
+  background: var(--black); color: var(--white); border: 1px solid var(--white);
+  padding: .15rem .5rem; pointer-events: none;
+}
+.slide-in { animation: slideFade .25s ease-out; }
+@keyframes slideFade { from { opacity: 0; } to { opacity: 1; } }

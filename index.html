@@ -20,7 +20,7 @@
 
     <div class="double-border bg-black p-2 md:p-3 relative overflow-hidden">
       <div id="hero" class="hero relative w-full h-[280px] sm:h-[360px] md:h-[420px] bg-neutral-900 overflow-hidden">
-        <div id="hero-media" class="hero-media absolute inset-0 filter brightness-75 contrast-125"></div>
+        <div id="hero-media" class="hero-media absolute inset-0"></div>
 
         <div class="absolute top-4 left-4 border border-white bg-black p-2 w-12 h-12 flex items-center justify-center z-10 shadow-lg">
           <svg class="w-8 h-8 accent-selected animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -70,8 +70,11 @@
       const tab = NAV[key];
 
       $("hero-title").textContent = tab.label;
-      mountMedia($("hero-media"), SITE_MEDIA[tab.hero], tab.label + " cover", "w-full h-full object-cover");
-      $("hero").classList.toggle("clickable", tab.view === "categories");
+      // The hero can be one image, or a list of images (a slideshow with arrows; heroInterval = auto seconds)
+      const heroSrc = SITE_MEDIA[tab.hero];
+      mountHero($("hero-media"), heroSrc, tab.label + " cover", tab.heroInterval);
+      const heroSlides = Array.isArray(heroSrc) && heroSrc.length > 1;
+      $("hero").classList.toggle("clickable", tab.view === "categories" && !heroSlides);
 
       document.querySelectorAll(".nav-tab").forEach((b) => {
         b.classList.toggle("is-active", b.dataset.tab === key);
@@ -235,7 +238,9 @@
     $("hero").addEventListener("click", () => {
       const tab = NAV[currentTab];
       if (!tab || tab.view !== "categories") return;
-      openModal(tab.label + " // MAIN HERO VIEW", SITE_MEDIA[tab.hero],
+      let heroSrc = SITE_MEDIA[tab.hero];
+      if (Array.isArray(heroSrc)) { if (heroSrc.length > 1) return; heroSrc = heroSrc[0]; }
+      openModal(tab.label + " // MAIN HERO VIEW", heroSrc,
         "Primary featured exhibit highlighting overall work in " + tab.label + ".");
     });
 

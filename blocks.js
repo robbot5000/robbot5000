@@ -8,14 +8,46 @@ function blockParagraphs(text) {
   return parts.map(function (s) { return String(s).trim(); }).filter(Boolean);
 }
 
-// The media (image / video file / YouTube or Vimeo link) inside its frame
+// Playback options that apply to videos
+function blockMediaOpts(b) {
+  return { controls: b.controls, autoplay: b.autoplay, loop: b.loop, muted: b.muted, poster: b.poster };
+}
+
+function blockLoading() {
+  return html('<div class="placeholder"><span class="t-small">LOADING...</span></div>');
+}
+
+// The media inside its frame. b.media can be:
+//   "one file or link"                          -> a single image / video / YouTube or Vimeo link
+//   ["a.webp", "b.mp4", { src, caption }, ...]  -> a slideshow with arrows
+// or leave media out and give  folder: "assets/..."  -> a slideshow of everything in that folder
 function blockMedia(b) {
   const framed = b.frame !== false;
   const wrap = html(framed ? '<div class="double-border bg-black p-2 md:p-3"></div>' : "<div></div>");
   const slot = html('<div class="media-slot overflow-hidden' + (framed ? " bg-neutral-900" : "") + '"></div>');
-  mountMedia(slot, b.media, b.alt || b.title || "",
-    "block w-full h-auto" + (b.pixelated ? " pixelated" : ""),
-    { controls: b.controls, autoplay: b.autoplay, loop: b.loop, muted: b.muted, poster: b.poster });
+  const alt = b.alt || b.title || "";
+  const cls = "block w-full h-auto" + (b.pixelated ? " pixelated" : "");
+  const slideOpts = Object.assign(
+    { alt: alt, pixelated: b.pixelated, interval: b.interval, ratio: b.ratio, fit: b.fit },
+    blockMediaOpts(b));
+
+  function fill(items) {
+    if (items.length > 1) slot.replaceChildren(buildSlideshow(items, slideOpts));
+    else mountMedia(slot, items.length ? (items[0].src || items[0]) : "", alt, cls, blockMediaOpts(b));
+  }
+
+  if (Array.isArray(b.media)) {
+    fill(b.media);
+  } else if (!b.media && b.folder) {
+    slot.appendChild(blockLoading());
+    galleryListFolder(b.folder).then(function (names) {
+      const pin = b.pinPrefix || (typeof GALLERY_DEFAULTS !== "undefined" ? GALLERY_DEFAULTS.pinPrefix : "pin_");
+      const base = galleryUrlPath(b.folder);
+      fill(gallerySort(names, pin).map(function (n) { return { src: base + "/" + encodeURIComponent(n) }; }));
+    }).catch(function () { slot.replaceChildren(placeholder()); });
+  } else {
+    mountMedia(slot, b.media, alt, cls, blockMediaOpts(b));
+  }
   wrap.appendChild(slot);
   return wrap;
 }

@@ -142,13 +142,6 @@ function galleryBuildTile(item, cfg) {
     "</" + tag + ">"
   );
   tile.querySelector(".tile-media").appendChild(m.el);
-
-  if (m.kind !== "embed") {
-    tile.addEventListener("click", function () {
-      openModal(item.title, item.src, m.w + " × " + m.h + " PX",
-        { fit: "contain", tall: true, pixelated: cfg.pixelated });
-    });
-  }
   return tile;
 }
 
@@ -199,12 +192,28 @@ async function renderGallery(container, cfg) {
   }));
 
   const tiles = loaded.filter(Boolean).map(function (item) {
-    return { el: galleryBuildTile(item, cfg), ratio: item.media.ratio, media: item.media };
+    return { el: galleryBuildTile(item, cfg), ratio: item.media.ratio, media: item.media,
+             title: item.title, src: item.src };
   });
 
   if (!tiles.length) {
     statusText.textContent = "NOTHING COULD BE LOADED FOR THIS GALLERY";
     return;
+  }
+
+  // Folder style: clicking a tile opens the big view, with arrows (and the arrow keys) to step
+  // through every image in the gallery, in the same order as the grid. Raw style has no popup.
+  if (cfg.style !== "raw") {
+    const lightbox = [];
+    tiles.forEach(function (t) {
+      if (t.media.kind === "embed") return; // YouTube / Vimeo tiles play right in the grid
+      lightbox.push({ title: t.title, src: t.src, desc: t.media.w + " × " + t.media.h + " PX" });
+      const at = lightbox.length - 1;
+      t.el.addEventListener("click", function () {
+        openModal(t.title, t.src, lightbox[at].desc,
+          { fit: "contain", tall: true, pixelated: cfg.pixelated, list: lightbox, index: at });
+      });
+    });
   }
 
   // 3. Masonry layout.
