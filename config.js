@@ -184,8 +184,8 @@ const BIO = {
   photo: "assets/branding/robbot5000-photos/DSC01336_edit-01_webp.webp",
   fields: [
     { label: "NAME",         value: "Robert Rigo" },
-    { label: "HANDLE",       value: "@ROBBOT.5000" },
-    { label: "OCCUPATION",   value: "Industrial Designer / Creative Technician / CG Artist\n\nCurrently the Product Manager/ Lead Technical Design at aaline lighting & acoustics" },
+    { label: "HANDLE",       value: "ROBBOT.5000" },
+    { label: "OCCUPATION",   value: "Industrial Designer / Creative Technician / CG Artist.\n\nCurrently the Product Manager/ Lead Technical Design at aaline lighting & acoustics" },
     { label: "LOCATION",     value: "Toronto, ON" },
     { label: "INTERESTS",    value: "[ interests ]" },
     { label: "SOFTWARE",     value: "TouchDesigner, Rhino3D, Blender, Fusion360, Adobe Creative Suite" },
@@ -195,7 +195,7 @@ const BIO = {
     { label: "AVAILABILITY", value: "Open to collaborations + commissions" }
   ],
   links: [
-    { label: "GITHUB",    href: "https://github.com/robbot5000" },
+    { label: "GITHUB",    href: "" },
     { label: "INSTAGRAM", href: "https://www.instagram.com/robbot.5000/" }
   ]
 };
