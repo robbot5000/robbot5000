@@ -147,7 +147,26 @@
     applyCursor();
   }
 
+  // ---------- Favicon (SITE.favicon in config.js; "" = browser default) ----------
+  function applyFavicon() {
+    const s = typeof SITE !== "undefined" ? SITE : null;
+    const href = s && typeof s.favicon === "string" ? s.favicon.trim() : "";
+    if (!href) return;
+    const types = { svg: "image/svg+xml", png: "image/png", ico: "image/x-icon",
+                    jpg: "image/jpeg", jpeg: "image/jpeg", webp: "image/webp", gif: "image/gif" };
+    const ext = (href.split(/[?#]/)[0].split(".").pop() || "").toLowerCase();
+    let link = document.querySelector('link[rel~="icon"]');
+    if (!link) {
+      link = document.createElement("link");
+      link.rel = "icon";
+      document.head.appendChild(link);
+    }
+    if (types[ext]) link.type = types[ext]; else link.removeAttribute("type");
+    link.href = href;
+  }
+
   applyTheme();
+  applyFavicon();
 
   // Console helpers for live experiments:
   //   setRole("hover", "color1")       setCursorMode("system")   setCursorMode("custom")

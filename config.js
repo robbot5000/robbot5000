@@ -100,6 +100,21 @@ const THEME = {
   }
 };
 
+const SITE = {
+  // Icon in the box at the top-left of the main-page hero.
+  //   ""      = the built-in computer icon
+  //   "none"  = no icon box at all
+  //   "assets/branding/hero-icon.svg" = your own image (svg, png or webp)
+  heroIcon: "assets/branding/favicon/ROBBOT_technologies_favicon.png",
+  heroIconSize: 48,        // box size in pixels
+  heroIconFrame: true,     // false = no border or black box, just the icon
+  heroIconTint: false,     // true = draw the icon's shape in your "selected" color
+  heroIconPulse: false,    // true = the slow pulse the computer icon has
+
+  // Browser tab icon. "" = browser default
+  favicon: "assets/branding/favicon/ROBBOT_technologies_favicon.png"
+};
+
 // ============================================================
 // WEBSITE MEDIA CONFIGURATION
 // ============================================================

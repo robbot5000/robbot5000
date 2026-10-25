@@ -221,3 +221,11 @@ input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type=
 }
 .slide-in { animation: slideFade .25s ease-out; }
 @keyframes slideFade { from { opacity: 0; } to { opacity: 1; } }
+
+/* Hero icon drawn as a silhouette in the "selected" color (SITE.heroIconTint) */
+.hero-icon-mask {
+  background-color: var(--selected);
+  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+  -webkit-mask-position: center;  mask-position: center;
+  -webkit-mask-size: contain;     mask-size: contain;
+}

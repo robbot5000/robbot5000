@@ -22,7 +22,7 @@
       <div id="hero" class="hero relative w-full h-[280px] sm:h-[360px] md:h-[420px] bg-neutral-900 overflow-hidden">
         <div id="hero-media" class="hero-media absolute inset-0"></div>
 
-        <div class="absolute top-4 left-4 border border-white bg-black p-2 w-12 h-12 flex items-center justify-center z-10 shadow-lg">
+        <div id="hero-icon" class="absolute top-4 left-4 border border-white bg-black p-2 w-12 h-12 flex items-center justify-center z-10 shadow-lg">
           <svg class="w-8 h-8 accent-selected animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
           </svg>
@@ -48,6 +48,43 @@
   <script>
     const TAB_KEYS = Object.keys(NAV);
     let currentTab = null;
+
+    // ---------- Hero icon (SITE.heroIcon in config.js) ----------
+    // "" = the built-in computer icon, "none" = no icon box, or a path to your own image.
+    function applyHeroIcon() {
+      const box = $("hero-icon");
+      const s = typeof SITE !== "undefined" ? SITE : {};
+      const src = String(s.heroIcon || "").trim();
+      if (!box || !src) return;
+      if (src.toLowerCase() === "none") { box.remove(); return; }
+
+      // Check the file loads first; if it doesn't, the built-in icon stays
+      const probe = new Image();
+      probe.onerror = function () { console.warn("[hero icon] could not load " + src + ", keeping the built-in icon."); };
+      probe.onload = function () {
+        const size = Number(s.heroIconSize) > 0 ? Number(s.heroIconSize) : 48;
+        const pulse = s.heroIconPulse ? " animate-pulse" : "";
+        box.className = "absolute top-4 left-4 flex items-center justify-center z-10" +
+          (s.heroIconFrame === false ? "" : " border border-white bg-black p-2 shadow-lg");
+        box.style.width = size + "px";
+        box.style.height = size + "px";
+        box.replaceChildren();
+        let icon;
+        if (s.heroIconTint) {            // draw the image's shape in the "selected" color
+          icon = html('<div class="hero-icon-mask w-full h-full' + pulse + '"></div>');
+          const u = 'url("' + src + '")';
+          icon.style.webkitMaskImage = u;
+          icon.style.maskImage = u;
+        } else {
+          icon = new Image();
+          icon.alt = "";
+          icon.className = "w-full h-full object-contain" + pulse;
+          icon.src = src;
+        }
+        box.appendChild(icon);
+      };
+      probe.src = src;
+    }
 
     // ---------- Tabs ----------
     function buildNav() {
@@ -246,6 +283,7 @@
 
     // ---------- Start ----------
     document.addEventListener("DOMContentLoaded", () => {
+      applyHeroIcon();
       buildNav();
       switchTab(location.hash.slice(1), { updateHash: false });
     });
