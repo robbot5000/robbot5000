@@ -375,6 +375,11 @@ const CATEGORY_DATA = {
         title: "LTS SCANNING PORTAL",
         image: "assets/interactive/lts-scanning-portal/IMG20260130231500_webp.webp",
         description: "Interactive projection-mapped custom painting. A collaboration with Prayfirstdiva."
+      },
+      {
+        title: "HYPNOTICA",
+        image: "assets/interactive/hypnotica/20230401_213027_wide_webp.webp",
+        description: "Interactive projection-mapped real-time visual effects for digital arts & pole dancing show. Solo project."
       }
     ]
   },
