@@ -153,16 +153,17 @@ const SITE_MEDIA = {
 //                  (KEY must exist in CATEGORY_DATA below)
 //   "bio"        = portrait + profile list (see BIO)
 //   "contact"    = excerpt + email form (see CONTACT)
+// Optional on any card: grayscale: true  = black and white until hovered
 const NAV = {
   design: {
     label: "DESIGN",
     hero: "heroDesign",
     view: "categories",
     categories: [
-      { key: "interactive",       label: "INTERACTIVE",       image: "cardInteractive" },
-      { key: "lighting-visuals",  label: "LIGHTING / VISUALS", image: "cardLightingVisuals" },
+      { key: "interactive",       label: "INTERACTIVE",       image: "cardInteractive", grayscale: true },
+      { key: "lighting-visuals",  label: "LIGHTING / VISUALS", image: "cardLightingVisuals", grayscale: true },
       { key: "industrial-design", label: "INDUSTRIAL DESIGN", image: "cardIndustrialDesign", grayscale: true },
-      { key: "graphics-renders",  label: "GRAPHICS / RENDERS", image: "cardGraphicsRenders" }
+      { key: "graphics-renders",  label: "GRAPHICS / RENDERS", image: "cardGraphicsRenders", grayscale: true }
     ]
   },
   art: {
