@@ -103,6 +103,12 @@ const THEME = {
 // ============================================================
 // WEBSITE MEDIA CONFIGURATION
 // ============================================================
+/*
+For adding gallery photos:
+heroImage: ["assets/a.webp", "assets/b.webp"],  heroInterval: 6,   // project / category pages
+heroDesign: ["assets/a.webp", "assets/b.webp"],                       // SITE_MEDIA on the main page
+{ label: "DESIGN", hero: "heroDesign", heroInterval: 6, ... }         // optional, in NAV
+*/
 const SITE_MEDIA = {
   // MAIN HERO TAB IMAGES
   heroDesign: ["assets/interactive/intel-encore/INTELAIEXHIBIT_W-V1_webp.webp", "assets/visuals-lighting/dark-matter-2024/IMG20241025000051_webp.webp", "assets/visuals-lighting/techromancy-02/IMG20251206022742_wide_webp.webp"], heroInterval: 6,
@@ -179,20 +185,18 @@ const BIO = {
   fields: [
     { label: "NAME",         value: "Robert Rigo" },
     { label: "HANDLE",       value: "@ROBBOT.5000" },
-    { label: "OCCUPATION",   value: "[ job title ]" },
+    { label: "OCCUPATION",   value: "Industrial Designer / Creative Technician / CG Artist\n\nCurrently the Product Manager/ Lead Technical Design at aaline lighting & acoustics" },
     { label: "LOCATION",     value: "Toronto, ON" },
-    { label: "EDUCATION",    value: "[ program ], Humber" },
     { label: "INTERESTS",    value: "[ interests ]" },
-    { label: "SOFTWARE",     value: "TouchDesigner, [ more ]" },
+    { label: "SOFTWARE",     value: "TouchDesigner, Rhino3D, Blender, Fusion360, Adobe Creative Suite" },
     { label: "HARDWARE",     value: "[ gear you build with ]" },
     { label: "FOCUS",        value: "[ areas of work ]" },
     { label: "CURRENTLY",    value: "[ what you're working on ]" },
     { label: "AVAILABILITY", value: "Open to collaborations + commissions" }
   ],
   links: [
-    { label: "GITHUB",    href: "" },
-    { label: "INSTAGRAM", href: "" },
-    { label: "LINKEDIN",  href: "" }
+    { label: "GITHUB",    href: "https://github.com/robbot5000" },
+    { label: "INSTAGRAM", href: "https://www.instagram.com/robbot.5000/" }
   ]
 };
 
