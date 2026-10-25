@@ -105,7 +105,7 @@ const THEME = {
 // ============================================================
 const SITE_MEDIA = {
   // MAIN HERO TAB IMAGES
-  heroDesign: ["assets/interactive/intel-encore/INTELAIEXHIBIT_W-V1_webp.webp", "assets/visuals-lighting/dark-matter-2024/IMG20241025000051_webp.webp", "assets/visuals-lighting/techromancy-02/IMG20251206022742_wide_webp.webp"],
+  heroDesign: ["assets/interactive/intel-encore/INTELAIEXHIBIT_W-V1_webp.webp", "assets/visuals-lighting/dark-matter-2024/IMG20241025000051_webp.webp", "assets/visuals-lighting/techromancy-02/IMG20251206022742_wide_webp.webp"], heroInterval: 6,
   heroArtExperiments: "assets/interactive/intel-encore/INTELAIEXHIBIT_W-V1_webp.webp",
   heroBio: "assets/interactive/intel-encore/INTELAIEXHIBIT_W-V1_webp.webp",
   heroContact: "assets/interactive/intel-encore/INTELAIEXHIBIT_W-13_webp.webp",
