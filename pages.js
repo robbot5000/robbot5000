@@ -55,6 +55,45 @@
 const PROJECT_PAGES = {
 
   // EXAMPLE: replace the placeholder text and media, then copy this entry for your next project.
+  /*
+  "example-project-name": {
+    title: "INTEL ENCORE EXHIBIT",
+    category: "interactive",
+    heroImage: "assets/interactive/intel-encore/INTELAIEXHIBIT_W-13_webp.webp",
+    blocks: [
+      { type: "text", title: "OVERVIEW",
+        text: "Real-time sensory tracking interface, physical computing, and custom spatial projection mapping." },
+
+      { type: "full", media: "assets/interactive/intel-encore/INTELAIEXHIBIT_W-V1_webp.webp",
+        caption: "[ optional caption ]" },
+
+      { type: "left", media: "assets/interactive/intel-encore/INTELAIEXHIBIT_W-13_webp.webp",
+        title: "[ SECTION TITLE ]",
+        text: "[ Describe this part of the project. ]\n\n[ A blank line starts a new paragraph. ]" },
+
+      { type: "right", media: ["assets/interactive/intel-encore/INTELAIEXHIBIT_W-V1_webp.webp", "assets/interactive/intel-encore/INTELAIEXHIBIT_W-13_webp.webp"],
+        title: "[ SECTION TITLE ]",
+        text: "[ Media on the right, text on the left. ]" },
+
+      { type: "gallery", title: "[ GALLERY ]", maxColumns: 2, style: "folder",
+        items: [
+          "assets/interactive/intel-encore/INTELAIEXHIBIT_W-V1_webp.webp",
+          "assets/interactive/intel-encore/INTELAIEXHIBIT_W-13_webp.webp"
+        ] }
+
+      // More things you can drop in:
+      // { type: "full", media: "assets/interactive/intel-encore/demo.mp4" },
+      // { type: "full", media: "https://www.youtube.com/watch?v=xxxxxxxxxxx" },
+      // { type: "gallery", folder: "assets/interactive/intel-encore/photos" },
+      // For photos:
+      // { type: "full",  media: "assets/x/photo.webp" },                           // one photo
+      // { type: "full",  media: ["assets/x/a.webp", "assets/x/b.webp", "assets/x/c.mp4"] },   // slideshow
+      // { type: "left",  media: ["a.webp", "b.webp"], title: "...", text: "..." },
+      // { type: "right", folder: "assets/x/photos", text: "..." },  
+    ]
+  },
+  */
+
   "intel-encore-exhibit": {
     title: "INTEL ENCORE EXHIBIT",
     category: "interactive",
@@ -91,6 +130,7 @@ const PROJECT_PAGES = {
       // { type: "right", folder: "assets/x/photos", text: "..." },  
     ]
   },
+
 
   "dark-matter-2024": {
     title: "DARK MATTER STAGE 2024",
