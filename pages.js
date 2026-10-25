@@ -107,7 +107,7 @@ const PROJECT_PAGES = {
 
       { type: "left", media: "assets/interactive/intel-encore/INTELAIEXHIBIT_W-13_webp.webp",
         title: "[ SECTION TITLE ]",
-        text: "[ Describe this part of the project. ]\n\n[ A blank line starts a new paragraph. ]" },
+        text: "[ Describe this part of the project. ]=\n\n[ A blank line starts a new paragraph. ]" },
 
       { type: "right", media: ["assets/interactive/intel-encore/INTELAIEXHIBIT_W-V1_webp.webp", "assets/interactive/intel-encore/INTELAIEXHIBIT_W-13_webp.webp"],
         title: "[ SECTION TITLE ]",

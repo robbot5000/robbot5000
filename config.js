@@ -132,10 +132,10 @@ const SITE_MEDIA = {
   heroContact: "assets/interactive/intel-encore/INTELAIEXHIBIT_W-13_webp.webp",
 
   // LANDING PAGE CARDS
-  cardIndustrialDesign: "assets/industrial-design/lucite-dreams/All-3.356_webp.webp",
-  cardLightingVisuals: "assets/visuals-lighting/sojourn-2024/sojournstagetest_webp.webp",
+  cardIndustrialDesign: "assets/industrial-design/harmony/photos/event-photos/18216863_798537746977151_7756060381350354147_o_webp.webp",
+  cardLightingVisuals: "assets/visuals-lighting/dark-matter-2024/IMG20241026031846_webp.webp",
   cardGraphicsRenders: "assets/graphics-renders/posters/NINE-0-NINE_March-Poster_PRE_webp.webp",
-  cardInteractive: "assets/interactive/intel-encore/INTELAIEXHIBIT_W-13_webp.webp",
+  cardInteractive: "assets/interactive/techromancy-03/IMG20260530235132_webp.webp",
 
   // ART / EXPERIMENTS CARDS  (empty "" = a NO SIGNAL placeholder is shown; add a path when ready)
   cardElectronicsBuilds: "",
