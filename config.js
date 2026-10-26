@@ -154,16 +154,17 @@ const SITE_MEDIA = {
 //   "bio"        = portrait + profile list (see BIO)
 //   "contact"    = excerpt + email form (see CONTACT)
 // Optional on any card: grayscale: true  = black and white until hovered
+// E.g., { key: "interactive",       label: "INTERACTIVE",       image: "cardInteractive", grayscale: true },
 const NAV = {
   design: {
     label: "DESIGN",
     hero: "heroDesign",
     view: "categories",
     categories: [
-      { key: "interactive",       label: "INTERACTIVE",       image: "cardInteractive", grayscale: true },
-      { key: "lighting-visuals",  label: "LIGHTING / VISUALS", image: "cardLightingVisuals", grayscale: true },
-      { key: "industrial-design", label: "INDUSTRIAL DESIGN", image: "cardIndustrialDesign", grayscale: true },
-      { key: "graphics-renders",  label: "GRAPHICS / RENDERS", image: "cardGraphicsRenders", grayscale: true }
+      { key: "interactive",       label: "INTERACTIVE",       image: "cardInteractive" },
+      { key: "lighting-visuals",  label: "LIGHTING / VISUALS", image: "cardLightingVisuals" },
+      { key: "industrial-design", label: "INDUSTRIAL DESIGN", image: "cardIndustrialDesign" },
+      { key: "graphics-renders",  label: "GRAPHICS / RENDERS", image: "cardGraphicsRenders" }
     ]
   },
   art: {
