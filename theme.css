@@ -229,3 +229,11 @@ input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type=
   -webkit-mask-position: center;  mask-position: center;
   -webkit-mask-size: contain;     mask-size: contain;
 }
+
+/* Bullet lists inside block text: small square bullets in the "selected" color */
+.blk-list { list-style: none; margin: 0; padding: 0; }
+.blk-list li { position: relative; padding-left: 1.25rem; }
+.blk-list li::before {
+  content: ""; position: absolute; left: .2rem; top: .62em;
+  width: .4rem; height: .4rem; background: var(--selected);
+}

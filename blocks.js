@@ -3,9 +3,31 @@
 //
 // Block types:  full | left | right | gallery | text      (full reference at the top of pages.js)
 
-function blockParagraphs(text) {
-  const parts = Array.isArray(text) ? text : String(text == null ? "" : text).split(/\n\s*\n/);
-  return parts.map(function (s) { return String(s).trim(); }).filter(Boolean);
+// Text -> a list of paragraphs and bullet lists.
+//   text can be one string (blank line = new paragraph, \n = line break)
+//   or a list of strings, one per line / paragraph.
+//   Any line starting with "- " (or "• " / "* ") becomes a bullet; neighbouring bullets form one list.
+function blockTextParts(text) {
+  const chunks = Array.isArray(text) ? text : String(text == null ? "" : text).split(/\n\s*\n/);
+  const out = [];
+  chunks.forEach(function (chunk) {
+    let para = [];
+    function flush() { if (para.length) { out.push({ p: para.join("\n") }); para = []; } }
+    String(chunk == null ? "" : chunk).split("\n").forEach(function (raw) {
+      const line = raw.trim();
+      if (!line) { flush(); return; }
+      const m = line.match(/^[-\u2022*]\s+(.+)$/);
+      if (m) {
+        flush();
+        const last = out[out.length - 1];
+        if (last && last.li) last.li.push(m[1]); else out.push({ li: [m[1]] });
+      } else {
+        para.push(line);
+      }
+    });
+    flush();
+  });
+  return out;
 }
 
 // Playback options that apply to videos
@@ -53,8 +75,13 @@ function blockMedia(b) {
 }
 
 function blockTextHtml(b) {
-  const paras = blockParagraphs(b.text).map(function (p) {
-    return '<p class="t-body text-neutral-300 whitespace-pre-line">' + esc(p) + "</p>";
+  const paras = blockTextParts(b.text).map(function (part) {
+    if (part.li) {
+      return '<ul class="blk-list space-y-2">' + part.li.map(function (t) {
+        return '<li class="t-body text-neutral-300">' + esc(t) + "</li>";
+      }).join("") + "</ul>";
+    }
+    return '<p class="t-body text-neutral-300 whitespace-pre-line">' + esc(part.p) + "</p>";
   }).join("");
   return (b.title ? '<h2 class="t-h2 mb-4">' + esc(b.title) + "</h2>" : "") +
     '<div class="space-y-4">' + paras + "</div>";

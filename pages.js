@@ -90,6 +90,7 @@ const PROJECT_PAGES = {
       // { type: "full",  media: ["assets/x/a.webp", "assets/x/b.webp", "assets/x/c.mp4"] },   // slideshow
       // { type: "left",  media: ["a.webp", "b.webp"], title: "...", text: "..." },
       // { type: "right", folder: "assets/x/photos", text: "..." },  
+      //   text: ["Intro", "- bullet one", "- bullet two"]  -> a line, then a bulleted list
     ]
   },
   */
@@ -146,6 +147,63 @@ const PROJECT_PAGES = {
       { type: "left", media: "assets/visuals-lighting/dark-matter-2024/Vid20241024235930.mp4",
         title: "DETAILS",
         text: "A massive projection-mapped 39x9ft Tulle screen with a 14x8ft rear screen setup which created a parallax visual effect." }
+    ]
+  },
+
+    "harmony": {
+    title: "Harmony Thesis Project",
+    category: "industrial-design",
+    heroImage: "assets/industrial-design/harmony/photos/event-photos/18318949_800023876828538_2280551132784683006_o_webp.webp",
+    blocks: [
+      { type: "full", media: "assets/industrial-design/harmony/renders/Title_webp.webp",
+        caption: "" },
+
+      { type: "full", media: "assets/industrial-design/harmony/graphics/Poster_Robert Rigo_webp.webp",
+        caption: "" },
+
+      { type: "full", media: "assets/industrial-design/harmony/graphics/Process1_Robert Rigo_webp.webp",
+        caption: "" },
+
+      { type: "full", media: "assets/industrial-design/harmony/graphics/Process2_Robert Rigo_webp.webp",
+        caption: "" },
+  
+      { type: "full", media: "assets/industrial-design/harmony/graphics/Process3_Robert Rigo_webp.webp",
+        caption: "" },
+
+      { type: "full", media: "assets/industrial-design/harmony/photos/event-photos/18238034_798535940310665_6232527085398416764_o_webp.webp, assets/industrial-design/harmony/photos/event-photos/18300868_800023390161920_6667980140668868100_n_webp.webp, assets/industrial-design/harmony/photos/event-photos/18301018_800024390161820_8713392477311846277_n_webp.webp, assets/industrial-design/harmony/photos/event-photos/18318937_798531476977778_6031716283722041273_o_webp.webp, assets/industrial-design/harmony/photos/event-photos/18318949_800023876828538_2280551132784683006_o_webp.webp",
+        caption: "Thesis Event" },
+
+      { type: "full", media: "assets/industrial-design/harmony/photos/final-build/IMG_20170410_130231_webp.webp, assets/industrial-design/harmony/photos/final-build/IMG_20170410_130339_webp.webp, assets/industrial-design/harmony/photos/final-build/IMG_20170410_130435_webp.webp, assets/industrial-design/harmony/photos/final-build/IMG_20170410_130626_webp.webp, assets/industrial-design/harmony/photos/final-build/IMG_20170410_130647_webp.webp, assets/industrial-design/harmony/photos/final-build/IMG_20170410_130657_webp.webp, assets/industrial-design/harmony/photos/final-build/IMG_20170410_130704_webp.webp, assets/industrial-design/harmony/photos/final-build/IMG_20170410_130721_webp.webp",
+        caption: "Final Model" },
+
+      { type: "text", title: "Final Design",
+        text: ["Harmony is a contemporary approach to music therapy for youth with Autism.",
+          "",
+          "The device acts as a sampler which requires audio/ vocal input to begin to form music.",
+          "",
+          "The two-sided body and on-board functions easily lends itself to a social, two user experience which boosts sociability and communication, while providing a fun, engaging learning experience of music production through the use of sample pads, sequencer, FX modules and tactile speaker panel."
+        ]},
+
+      { type: "full", media: "assets/industrial-design/harmony/renders/Final-Design_1_webp.webp",
+        caption: "" },
+
+      { type: "text", title: "",
+        text: [
+          "Harmony's functionality is divided into two individual surfaces and a shared console.",
+          "",
+          "The two individual surfaces consist of...",
+          "• 6 Recordable & Playable Sample Buttons + Sample Clearer (Trash)",
+          "• 2 Inductive Effect Active Circle Pads",
+          "• Wooden Speaker Panel",
+          "• Volume Dial",
+          "• Headphone Jack",
+          "",
+          "These functions are equally divided on either the warm-toned side and the cool-toned side. While the sides are identical in functionality, the LEDs differ providing different feelings depending on the primary user’s preference.",
+        ]},
+
+      { type: "full", media: "assets/industrial-design/harmony/renders/Final+Render+V3.133_webp.webp",
+        caption: "" },
+
     ]
   }
 
