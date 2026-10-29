@@ -134,12 +134,43 @@ function blockGallery(b, pending) {
   return sec;
 }
 
+// "examplewebsite.com" -> "https://examplewebsite.com". Full links, mailto:/tel:, and local pages are kept as written.
+function blockLinkHref(raw) {
+  const s = String(raw == null ? "" : raw).trim();
+  if (!s) return "";
+  if (/^(https?:\/\/|mailto:|tel:|sms:)/i.test(s)) return s;
+  if (/^(\/|\.\/|\.\.\/|#|\?)/.test(s)) return s;       // /path, ./page, #section
+  if (/\.(html?|pdf)([?#]|$)/i.test(s)) return s;       // local files such as page.html
+  return "https://" + s;
+}
+
+// Button(s) that open a link in a new tab.
+//   { type: "button", hyperlink: "examplewebsite.com", label: "VISIT SITE", align: "left" }
+//   { type: "button", buttons: [ { label: "WEBSITE", hyperlink: "..." }, { label: "EMAIL", hyperlink: "mailto:..." } ] }
+function blockButton(b) {
+  const items = Array.isArray(b.buttons) && b.buttons.length ? b.buttons : [b];
+  const align = { left: "justify-start", right: "justify-end" }[String(b.align || "").toLowerCase()] || "justify-center";
+  const sec = html('<section class="flex flex-wrap items-center gap-3 ' + align + '"></section>');
+  items.forEach(function (it) {
+    const href = blockLinkHref(it.hyperlink || it.href || it.url);
+    if (!href) { sec.appendChild(blockProblem("BUTTON HAS NO hyperlink SET")); return; }
+    const newTab = !/^(mailto:|tel:|sms:)/i.test(href);
+    sec.appendChild(html(
+      '<a class="tab t-h3 btn-block" href="' + esc(href) + '"' +
+      (newTab ? ' target="_blank" rel="noopener noreferrer"' : "") + ">" +
+      esc(it.label || "OPEN LINK ->") + "</a>"
+    ));
+  });
+  return sec;
+}
+
 const BLOCK_TYPES = {
   full: blockFull,
   left: function (b) { return blockSplit(b, true); },
   right: function (b) { return blockSplit(b, false); },
   text: blockText,
-  gallery: blockGallery
+  gallery: blockGallery,
+  button: blockButton
 };
 
 function blockProblem(msg) {
@@ -155,7 +186,7 @@ function renderBlocksPage(container, data) {
     const type = String((b && b.type) || "").toLowerCase();
     const make = BLOCK_TYPES[type];
     if (!make) {
-      wrap.appendChild(blockProblem('BLOCK ' + (i + 1) + ': UNKNOWN TYPE "' + type + '" // USE full, left, right, gallery OR text'));
+      wrap.appendChild(blockProblem('BLOCK ' + (i + 1) + ': UNKNOWN TYPE "' + type + '" // USE full, left, right, gallery, text OR button'));
       return;
     }
     wrap.appendChild(make(b, pending));

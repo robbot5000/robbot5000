@@ -237,3 +237,6 @@ input:not([type="checkbox"]):not([type="radio"]):not([type="button"]):not([type=
   content: ""; position: absolute; left: .2rem; top: .62em;
   width: .4rem; height: .4rem; background: var(--selected);
 }
+
+/* Link button block */
+.btn-block { padding: .75rem 1.75rem; }
