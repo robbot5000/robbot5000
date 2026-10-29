@@ -258,7 +258,7 @@ const PROJECT_PAGES = {
           "Their other main function is for ergonomic use of using the groove for easy grip to pick up the modules."
           ]},
 
-      { type: "full", media: "assets/industrial-design/harmony/renders/Modules_frontlineup.122_webp.webp",
+      { type: "full", media: "assets/industrial-design/harmony/renders/Modules_frontlineup_webp.webp",
         caption: "" },
 
       { type: "text", title: "USB Charging & Saving",
