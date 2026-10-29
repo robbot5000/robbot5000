@@ -153,7 +153,7 @@ const PROJECT_PAGES = {
     "harmony": {
     title: "Harmony Thesis Project",
     category: "industrial-design",
-    heroImage: "assets/industrial-design/harmony/photos/event-photos/18318949_800023876828538_2280551132784683006_o_webp.webp",
+    heroImage: "assets/industrial-design/harmony/photos/event-photos/harmony-thesis-photo-6.webp",
     blocks: [
       { type: "full", media: "assets/industrial-design/harmony/renders/Title_webp.webp",
         caption: "" },
@@ -170,10 +170,10 @@ const PROJECT_PAGES = {
       { type: "full", media: "assets/industrial-design/harmony/graphics/Process3_Robert Rigo_webp.webp",
         caption: "" },
 
-      { type: "full", media: "assets/industrial-design/harmony/photos/event-photos/18238034_798535940310665_6232527085398416764_o_webp.webp, assets/industrial-design/harmony/photos/event-photos/18300868_800023390161920_6667980140668868100_n_webp.webp, assets/industrial-design/harmony/photos/event-photos/18301018_800024390161820_8713392477311846277_n_webp.webp, assets/industrial-design/harmony/photos/event-photos/18318937_798531476977778_6031716283722041273_o_webp.webp, assets/industrial-design/harmony/photos/event-photos/18318949_800023876828538_2280551132784683006_o_webp.webp",
+      { type: "gallery", folder: "assets/industrial-design/harmony/photos/event-photos/event-selection",
         caption: "Thesis Event" },
 
-      { type: "full", media: "assets/industrial-design/harmony/photos/final-build/IMG_20170410_130231_webp.webp, assets/industrial-design/harmony/photos/final-build/IMG_20170410_130339_webp.webp, assets/industrial-design/harmony/photos/final-build/IMG_20170410_130435_webp.webp, assets/industrial-design/harmony/photos/final-build/IMG_20170410_130626_webp.webp, assets/industrial-design/harmony/photos/final-build/IMG_20170410_130647_webp.webp, assets/industrial-design/harmony/photos/final-build/IMG_20170410_130657_webp.webp, assets/industrial-design/harmony/photos/final-build/IMG_20170410_130704_webp.webp, assets/industrial-design/harmony/photos/final-build/IMG_20170410_130721_webp.webp",
+      { type: "gallery", folder: "assets/industrial-design/harmony/photos/final-build",
         caption: "Final Model" },
 
       { type: "text", title: "Final Design",
